@@ -1,0 +1,37 @@
+<resources>
+    <string name="app_name">MyChefDiaries</string>
+    <string name="enter_email">Enter Email</string>
+    <string name="enter_password">Enter Password</string>
+    <string name="enter_full_name">Enter Full Name</string>
+    <string name="sign_in">Sign In</string>
+    <string name="create_profile">Don\'t have any account? Click here!</string>
+    <string name="please_enter_email">Please Enter Email!</string>
+    <string name="please_enter_password">Please enter password!</string>
+    <string name="error">Error!</string>
+    <string name="create">Create</string>
+    <string name="upload_recipe">Upload_Recipe</string>
+    <string name="search_recipes">Search_recipe</string>
+    <string name="create_profile_successfully">Create profile successfully</string>
+    <string name="please_wait">Please wait...</string>
+    <string name="profile">Profile</string>
+    <string name="favorites">Favorites</string>
+    <string name="feed">Feed</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="create_recipe">Create Recipe</string>
+    <string name="recipe_name">Recipe Name</string>
+    <string name="ingridents">Ingridients</string>
+    <string name="instructions">Instructions</string>
+    <string name="duration">Duration in minutes</string>
+    <string name="name_of_recipe">Please enter name of recipe!</string>
+    <string name="ingredients_of_recipe">Please enter ingredients of recipe!</string>
+    <string name="instruction_of_recipe">Please enter recipe instructions!</string>
+    <string name="duration_of_recipe">Please enter duration for recipe!</string>
+    <string name="category_of_recipe">Please enter category for recipe!</string>
+
+
+
+
+
+
+</resources>
