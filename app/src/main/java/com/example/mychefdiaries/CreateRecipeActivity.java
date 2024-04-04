@@ -155,7 +155,7 @@ public class CreateRecipeActivity extends AppCompatActivity {
 
             // Initialize recipesIds with an empty list or fetch from the database
             ArrayList<String> recipesIds = new ArrayList<>();
-            User user = new User(userId, email, imageUrl, null);
+            User user = new User(userId, email, imageUrl);
             Recipe newRecipe = new Recipe();
             newRecipe.setTitle(recipeName.getText().toString());
             newRecipe.setIngredients(ingredients.getText().toString());
@@ -163,6 +163,13 @@ public class CreateRecipeActivity extends AppCompatActivity {
             newRecipe.setImage(imageUrl); // Here you should set the image URL of the recipe, not the user's image URL
             newRecipe.setMinutes(duration.getText().toString());
             newRecipe.setCategory(selectedCategory.toString());
+            newRecipe.setCreatedUser(user);
+            user.addRecipeId(newRecipe.getId());
+
+            if (newRecipe.getId() == null || newRecipe.getId().isEmpty()) {
+                String recipeId = db.collection(DataBaseManager.getRecipesCollectionName()).document().getId(); // Generate a new ID
+                newRecipe.setId(recipeId);
+            }
             DataBaseManager.saveRecipes(newRecipe, user, new OnCompleteListener<Void>() {
                 @Override
                 public void onComplete(@NonNull Task<Void> task) {

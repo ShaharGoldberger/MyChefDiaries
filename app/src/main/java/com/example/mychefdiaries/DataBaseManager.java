@@ -27,15 +27,20 @@ public class DataBaseManager {
     public static void saveRecipes(Recipe recipe, User user, OnCompleteListener<Void> listener) {
         FirebaseFirestore.getInstance()
                 .collection(RECIPES)
-                .document(recipe.getId())
+                .document(recipe.getId()) // Ensure recipe.getId() is not null
                 .set(recipe)
-                .addOnCompleteListener(new OnCompleteListener<Void>() {
-                    @Override
-                    public void onComplete(@NonNull Task<Void> task) {
-                        if (task.isSuccessful()) {
-                            saveUser(user, null);
-                        }
+                .addOnCompleteListener(task -> {
+                    if (task.isSuccessful()) {
+                        // Optionally, save user here if that's required logic
+                        saveUser(user, listener); // Pass listener here to chain completion
+                    } else if (listener != null) {
+                        listener.onComplete(task); // Notify if saving recipe failed
                     }
                 });
+    }
+
+
+    public static String getRecipesCollectionName() {
+        return RECIPES;
     }
 }
