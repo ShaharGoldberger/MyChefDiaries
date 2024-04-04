@@ -4,5 +4,6 @@ public class Ingredient {
 
     private String name;
     private double amount;
+    private double price;
 
 }
