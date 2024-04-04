@@ -28,10 +28,7 @@
     <string name="instruction_of_recipe">Please enter recipe instructions!</string>
     <string name="duration_of_recipe">Please enter duration for recipe!</string>
     <string name="category_of_recipe">Please enter category for recipe!</string>
-
-
-
-
+    <string name="search_by_category">Search Recipe By Category</string>
 
 
 </resources>

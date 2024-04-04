@@ -12,9 +12,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
-import com.example.mychefdiaries.CreateProfileActivity;
 import com.example.mychefdiaries.CreateRecipeActivity;
 import com.example.mychefdiaries.R;
+import com.example.mychefdiaries.Utilities.SearchRecipeByCategoryActivity;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -63,14 +63,25 @@ public class FeedFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
         Button createBT = view.findViewById(R.id.create);
         createBT.setOnClickListener(v->{
             goToAddRecepie();
+        });
+
+        Button SearchByCategoryBT = view.findViewById(R.id.search_by_category);
+        SearchByCategoryBT.setOnClickListener(v->{
+            goToSearchRecipeByCategory();
         });
     }
 
     private void goToAddRecepie() {
         Intent intent = new Intent(requireContext(), CreateRecipeActivity.class);
+        startActivity(intent);
+    }
+
+    private void goToSearchRecipeByCategory() {
+        Intent intent = new Intent(requireContext(), SearchRecipeByCategoryActivity.class);
         startActivity(intent);
     }
 }

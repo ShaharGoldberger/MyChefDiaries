@@ -15,6 +15,12 @@
         android:theme="@style/Theme.MyChefDiaries"
         tools:targetApi="31">
         <activity
+            android:name=".Utilities.CategoryRecipesActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Utilities.SearchRecipeByCategoryActivity"
+            android:exported="false" />
+        <activity
             android:name=".CreateRecipeActivity"
             android:exported="false" />
         <activity

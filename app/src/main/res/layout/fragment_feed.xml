@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/splasha_activity_background"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".fragments.FeedFragment">
 
@@ -13,11 +14,29 @@
        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
 
 
-    <Button
-        android:id="@+id/create"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="end|bottom"
-        android:layout_margin="16dp"
-        android:text="@string/create_recipe"/>
+        android:orientation="vertical"
+        android:padding="16dp"
+        android:layout_gravity="center"
+        android:gravity="center_horizontal">
+
+
+        <Button
+            android:id="@+id/create"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/create_recipe"
+            android:backgroundTint="@color/light_brown"
+            android:layout_marginBottom="16dp" />
+
+        <Button
+            android:id="@+id/search_by_category"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/search_by_category"
+            android:backgroundTint="@color/light_brown" />
+
+    </LinearLayout>
 </FrameLayout>

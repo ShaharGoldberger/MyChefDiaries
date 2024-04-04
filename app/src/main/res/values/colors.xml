@@ -5,6 +5,7 @@
     <color name="blue">#ABC1D3</color>
     <color name="custom_pink">#FFC0CB</color>
     <color name="lighter_pink">#FBD6DF</color>
+    <color name="light_brown">#A98274</color> <!-- Example light brown color -->
 
     <color name="pink_100">#F8BBD0</color>
     <color name="yellow_100">#FFF9C4</color>
