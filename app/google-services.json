@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "590775326431",
+    "firebase_url": "https://mychefdiaries-default-rtdb.europe-west1.firebasedatabase.app",
+    "project_id": "mychefdiaries",
+    "storage_bucket": "mychefdiaries.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:590775326431:android:39165f357a6cc7f7f13b6a",
+        "android_client_info": {
+          "package_name": "com.example.mychefdiaries"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB4VXDud9w-z7bcyWfPAmfgCOFyxi9EX2c"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
