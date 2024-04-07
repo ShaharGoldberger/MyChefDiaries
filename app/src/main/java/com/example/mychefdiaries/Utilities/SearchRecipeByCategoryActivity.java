@@ -36,10 +36,19 @@ public class SearchRecipeByCategoryActivity extends AppCompatActivity {
         });
 
         RecyclerView list = findViewById(R.id.list);
+
         categories.add(new Category(R.drawable.beef, CategoryType.BEEF));
+        categories.add(new Category(R.drawable.milk, CategoryType.DAIRY));
+        categories.add(new Category(R.drawable.vegan, CategoryType.VEGAN));
+        categories.add(new Category(R.drawable.cocktail, CategoryType.COKTAILES));
+        categories.add(new Category(R.drawable.fish, CategoryType.FISH));
+        categories.add(new Category(R.drawable.cupcake, CategoryType.DESSERTS));
+
         adapter = new CategoryAdapter(categories);
         list.setAdapter(adapter);
         list.setLayoutManager(new GridLayoutManager(this, 2));
+
+
 
 
 

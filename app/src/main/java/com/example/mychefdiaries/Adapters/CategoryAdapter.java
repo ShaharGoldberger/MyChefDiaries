@@ -60,6 +60,7 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.Recipe
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    
                 }
             });
 

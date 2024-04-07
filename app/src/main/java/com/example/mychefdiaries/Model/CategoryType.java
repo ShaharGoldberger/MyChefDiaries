@@ -1,5 +1,11 @@
 package com.example.mychefdiaries.Model;
 
 public enum  CategoryType {
-    BEEF
+    BEEF,
+    DAIRY,
+    FISH,
+    VEGAN,
+    DESSERTS,
+    COKTAILES;
+
 }
