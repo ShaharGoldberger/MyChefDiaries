@@ -6,18 +6,18 @@ public class Recipe {
     private String name;
     private String ingredients;
     private String image;
-    private User createdUser;
+    private String createdUserId;
     private String minutes;
     private String category;
     public Recipe() {
     }
 
-    public Recipe(String id, String name, String ingredients, String image, User createdUser, String minutes, String category) {
+    public Recipe(String id, String name, String ingredients, String image, String createdUserId, String minutes, String category) {
         this.id = id;
         this.name = name;
         this.ingredients = ingredients;
         this.image = image;
-        this.createdUser = createdUser;
+        this.createdUserId = createdUserId;
         this.minutes = minutes;
         this.category = category;
     }
@@ -42,12 +42,12 @@ public class Recipe {
         this.ingredients = ingredients;
     }
 
-    public User getCreatedUser() {
-        return createdUser;
+    public String getCreatedUserId() {
+        return createdUserId;
     }
 
-    public void setCreatedUser(User createdUser) {
-        this.createdUser = createdUser;
+    public void setCreatedUserId(String createdUserId) {
+        this.createdUserId = createdUserId;
     }
 
     public String getTitle() {

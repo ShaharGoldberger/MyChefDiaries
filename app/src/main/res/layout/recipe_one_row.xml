@@ -44,6 +44,20 @@
             android:text="Description"
             />
 
+        <TextView
+            android:id="@+id/type"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="18sp"
+            android:layout_toRightOf="@+id/imageSingleRow"
+            android:layout_toEndOf="@+id/imageSingleRow"
+            android:layout_marginLeft="10dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="5dp"
+            android:layout_below="@+id/recipeDescriptionRow"
+            android:text="Category"
+            />
+
     </RelativeLayout>
 
 </androidx.cardview.widget.CardView>

@@ -6,11 +6,13 @@ import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.example.mychefdiaries.Model.Recipe;
 import com.example.mychefdiaries.Model.RecipeViewActivity;
 import com.example.mychefdiaries.R;
@@ -41,6 +43,11 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.RecipeView
         //sending recipe's information to the holder, so it will appear in the single row view
         holder.recipeName.setText(recipesArray.get(position).getName());
         holder.recipeDescription.setText(recipesArray.get(position).getText());
+        holder.categoryTV.setText(recipesArray.get(position).getCategory());
+        Glide.with(holder.itemView)
+                .load(recipesArray.get(position).getImage())
+                .placeholder(R.drawable.icon)
+                .into(holder.image);
     }
 
     @Override
@@ -52,7 +59,8 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.RecipeView
     //creating class RecipeViewHolder, for displaying the recipes in the recycler view
     public class RecipeViewHolder extends RecyclerView.ViewHolder {
         //each single row will contain the recipe name and recipe description
-        TextView recipeName, recipeDescription;
+        TextView recipeName, recipeDescription, categoryTV;
+        ImageView image;
 
         public RecipeViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -77,6 +85,8 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.RecipeView
 
             recipeName = itemView.findViewById(R.id.recipeNameRow);
             recipeDescription = itemView.findViewById(R.id.recipeDescriptionRow);
+            categoryTV = itemView.findViewById(R.id.type);
+            image = itemView.findViewById(R.id.imageSingleRow);
         }
     }
 }

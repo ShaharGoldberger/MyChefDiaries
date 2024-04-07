@@ -16,6 +16,7 @@
     <string name="profile">Profile</string>
     <string name="favorites">Favorites</string>
     <string name="feed">Feed</string>
+    <string name="search">Search</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="create_recipe">Create Recipe</string>
@@ -29,6 +30,9 @@
     <string name="duration_of_recipe">Please enter duration for recipe!</string>
     <string name="category_of_recipe">Please enter category for recipe!</string>
     <string name="search_by_category">Search Recipe By Category</string>
+    <string name="search_by_text">Search Recipe By Text</string>
+    <string name="Ingredient_by">Ingredient By</string>
+
 
 
 </resources>

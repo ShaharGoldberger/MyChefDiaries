@@ -25,14 +25,20 @@ import androidx.core.view.WindowInsetsCompat;
 import com.example.mychefdiaries.Model.Recipe;
 import com.example.mychefdiaries.Model.User;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.UUID;
 
 public class CreateRecipeActivity extends AppCompatActivity {
 
@@ -44,6 +50,8 @@ public class CreateRecipeActivity extends AppCompatActivity {
     private RadioButton beef_btn, dairy_btn, fish_btn, vegan_btn, cocktails_btn, desserts_btn;
     private FirebaseFirestore db;
     private FirebaseAuth mAuth;
+
+    private String recipeImageUrl;
 
 
     private ActivityResultLauncher<Intent> cameraLauncher = registerForActivityResult(
@@ -80,7 +88,6 @@ public class CreateRecipeActivity extends AppCompatActivity {
             return insets;
         });
 
-        db = FirebaseFirestore.getInstance();
         mAuth = FirebaseAuth.getInstance();
 
         recipeName = findViewById(R.id.name);
@@ -113,6 +120,9 @@ public class CreateRecipeActivity extends AppCompatActivity {
 
         ImageView cameraIV = findViewById(R.id.camera);
         ImageView galleryIV = findViewById(R.id.gallery);
+
+        cameraIV.setOnClickListener(v-> openCamera());
+        galleryIV.setOnClickListener(v-> openGallery());
 
         Button createBT = findViewById(R.id.create);
         createBT.setOnClickListener(new View.OnClickListener() {
@@ -147,42 +157,67 @@ public class CreateRecipeActivity extends AppCompatActivity {
         }
         // need to get the user and create the recipe
         if (isValidInput) {
-            FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
-            String userId = firebaseUser.getUid();
-            String email = (firebaseUser.getEmail() != null) ? firebaseUser.getEmail() : "";
-            Uri photoUri = firebaseUser.getPhotoUrl();
-            String imageUrl = (photoUri != null) ? photoUri.toString() : "";
+            String id = UUID.randomUUID().toString();
+           uploadImage(id, new Runnable(){
+               @Override
+               public void run() {
+                   saveRecipeToDataBase(id);
+               }
+           });
+        }
+    }
 
-            // Initialize recipesIds with an empty list or fetch from the database
-            ArrayList<String> recipesIds = new ArrayList<>();
-            User user = new User(userId, email, imageUrl);
-            Recipe newRecipe = new Recipe();
-            newRecipe.setTitle(recipeName.getText().toString());
-            newRecipe.setIngredients(ingredients.getText().toString());
-            newRecipe.setText(instructions.getText().toString()); // Correct method for instructions
-            newRecipe.setImage(imageUrl); // Here you should set the image URL of the recipe, not the user's image URL
-            newRecipe.setMinutes(duration.getText().toString());
-            newRecipe.setCategory(selectedCategory.toString());
-            newRecipe.setCreatedUser(user);
-            user.addRecipeId(newRecipe.getId());
-
-            if (newRecipe.getId() == null || newRecipe.getId().isEmpty()) {
-                String recipeId = db.collection(DataBaseManager.getRecipesCollectionName()).document().getId(); // Generate a new ID
-                newRecipe.setId(recipeId);
-            }
-            DataBaseManager.saveRecipes(newRecipe, user, new OnCompleteListener<Void>() {
+    private void uploadImage(String uid, Runnable onDone) {
+        FirebaseStorage storage = FirebaseStorage.getInstance();
+        if (imageBitmapForRecipe != null) {
+            StorageReference ref = storage.getReference().child("images/"+uid+".jpg");
+            ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+            imageBitmapForRecipe.compress(Bitmap.CompressFormat.JPEG, 100, byteArrayOutputStream);
+            byte[] imageData = byteArrayOutputStream.toByteArray();
+            UploadTask uploadTask = ref.putBytes(imageData);
+            uploadTask.addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                 @Override
-                public void onComplete(@NonNull Task<Void> task) {
-                    if (task.isSuccessful()) {
-                        // Operation successful
-                        Toast.makeText(getApplicationContext(), "Recipe saved successfully!", Toast.LENGTH_LONG).show();
-                    } else {
-                        // Operation failed, handle the error
-                        Toast.makeText(getApplicationContext(), "Failed to save recipe.", Toast.LENGTH_LONG).show();
-                    }
+                public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                    ref.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                        @Override
+                        public void onSuccess(Uri uri) {
+                            recipeImageUrl = uri.toString();
+                            onDone.run();
+                        }
+                    });
                 }
             });
+        } else {
+            onDone.run();
         }
+    }
+
+    private void saveRecipeToDataBase(String id) {
+        FirebaseUser currentUser =  mAuth.getCurrentUser();;
+        String uid = currentUser.getUid(); // Get user's UID
+        Recipe newRecipe = new Recipe();
+        newRecipe.setId(id);
+        newRecipe.setTitle(recipeName.getText().toString());
+        newRecipe.setIngredients(ingredients.getText().toString());
+        newRecipe.setText(instructions.getText().toString()); // Correct method for instructions
+        newRecipe.setImage(recipeImageUrl); // Here you should set the image URL of the recipe, not the user's image URL
+        newRecipe.setMinutes(duration.getText().toString());
+        newRecipe.setCategory(selectedCategory.toString());
+        newRecipe.setCreatedUserId(uid);
+
+        DataBaseManager.saveRecipes(newRecipe, new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+                if (task.isSuccessful()) {
+                    // Operation successful
+                    Toast.makeText(getApplicationContext(), "Recipe saved successfully!", Toast.LENGTH_LONG).show();
+                    finish();
+                } else {
+                    // Operation failed, handle the error
+                    Toast.makeText(getApplicationContext(), "Failed to save recipe.", Toast.LENGTH_LONG).show();
+                }
+            }
+        });
     }
 
     private void openGallery() {

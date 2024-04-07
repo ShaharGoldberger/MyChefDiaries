@@ -9,13 +9,20 @@ import androidx.cardview.widget.CardView;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.mychefdiaries.Adapters.CategoryAdapter;
+import com.example.mychefdiaries.Model.Category;
+import com.example.mychefdiaries.Model.CategoryType;
 import com.example.mychefdiaries.R;
+
+import java.util.ArrayList;
 
 public class SearchRecipeByCategoryActivity extends AppCompatActivity {
 
-    private CardView beefCard, dairyCard, fishCard, veganCard, cocktailsCard, dessertsCard;
-
+    private CategoryAdapter adapter;
+    private ArrayList<Category> categories = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,20 +35,13 @@ public class SearchRecipeByCategoryActivity extends AppCompatActivity {
             return insets;
         });
 
-        beefCard = findViewById(R.id.beef_card);
-        dairyCard = findViewById(R.id.dairy_card);
-        fishCard = findViewById(R.id.fish_card);
-        veganCard = findViewById(R.id.vegan_card);
-        cocktailsCard = findViewById(R.id.cocktails_card);
-        dessertsCard = findViewById(R.id.desserts_card);
+        RecyclerView list = findViewById(R.id.list);
+        categories.add(new Category(R.drawable.beef, CategoryType.BEEF));
+        adapter = new CategoryAdapter(categories);
+        list.setAdapter(adapter);
+        list.setLayoutManager(new GridLayoutManager(this, 2));
 
-        // Setting up click listeners for each CardView
-        setupCardClickListener(beefCard, "Beef");
-        setupCardClickListener(dairyCard, "Dairy");
-        setupCardClickListener(fishCard, "Fish");
-        setupCardClickListener(veganCard, "Vegan");
-        setupCardClickListener(cocktailsCard, "Cocktails");
-        setupCardClickListener(dessertsCard, "Desserts");
+
 
     }
 
