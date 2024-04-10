@@ -66,21 +66,6 @@ public class DataBaseManager {
                 .addOnSuccessListener(listener);
     }
 
-    //for favorites recipes
-    public static void likeRecipe(String recipeId, String userId) {
-        FirebaseFirestore.getInstance().collection(RECIPES).document(recipeId)
-                .update("likedByUsers", FieldValue.arrayUnion(userId))
-                .addOnSuccessListener(aVoid -> Log.d("LikeRecipe", "Recipe successfully liked"))
-                .addOnFailureListener(e -> Log.w("LikeRecipe", "Error liking recipe", e));
-    }
-
-    public static void unlikeRecipe(String recipeId, String userId) {
-        FirebaseFirestore.getInstance().collection(RECIPES).document(recipeId)
-                .update("likedByUsers", FieldValue.arrayRemove(userId))
-                .addOnSuccessListener(aVoid -> Log.d("UnlikeRecipe", "Recipe successfully unliked"))
-                .addOnFailureListener(e -> Log.w("UnlikeRecipe", "Error unliking recipe", e));
-    }
-
     public static void getRecipesByCategory(CategoryType categoryType,  OnSuccessListener<QuerySnapshot> listener) {
         FirebaseFirestore.getInstance().collection(RECIPES)
                 .whereEqualTo("category", categoryType)
@@ -93,4 +78,6 @@ public class DataBaseManager {
                 .document(recipe.getId())
                 .set(recipe);
     }
+
+
 }

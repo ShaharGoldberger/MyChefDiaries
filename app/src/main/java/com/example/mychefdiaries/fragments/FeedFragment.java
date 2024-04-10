@@ -28,12 +28,7 @@ import com.google.firebase.firestore.QuerySnapshot;
 import java.util.ArrayList;
 import java.util.function.Consumer;
 
-/**
- * A simple {@link Fragment} subclass.
- * create an instance of this fragment.
- */
 public class FeedFragment extends Fragment {
-
 
     private RecipeAdapter adapter;
     private ArrayList<Recipe> recipeArrayList = new ArrayList<>();
