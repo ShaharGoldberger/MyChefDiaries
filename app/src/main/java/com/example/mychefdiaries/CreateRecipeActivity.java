@@ -202,7 +202,7 @@ public class CreateRecipeActivity extends AppCompatActivity {
         newRecipe.setText(instructions.getText().toString()); // Correct method for instructions
         newRecipe.setImage(recipeImageUrl); // Here you should set the image URL of the recipe, not the user's image URL
         newRecipe.setMinutes(duration.getText().toString());
-        newRecipe.setCategory(selectedCategory.toString());
+        newRecipe.setCategory(selectedCategory.toString().toUpperCase());
         newRecipe.setCreatedUserId(uid);
 
         DataBaseManager.saveRecipes(newRecipe, new OnCompleteListener<Void>() {

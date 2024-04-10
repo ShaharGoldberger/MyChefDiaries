@@ -13,21 +13,32 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.example.mychefdiaries.DataBaseManager;
 import com.example.mychefdiaries.Model.Recipe;
 import com.example.mychefdiaries.Model.RecipeViewActivity;
 import com.example.mychefdiaries.R;
+import com.google.firebase.auth.FirebaseAuth;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.RecipeViewHolder> {
     private ArrayList<Recipe> recipesArray;
     private Context context;
+    private String currentUserId; //for favorites
+
+    private boolean showFavorites = false;
 
 
-    //constructor with the arrayList of recipes attribute
     public RecipeAdapter(ArrayList<Recipe> recipesArray) {
         this.recipesArray = recipesArray;
         this.context = context;
+    }
+
+    public RecipeAdapter(ArrayList<Recipe> recipesArray, boolean showFavorites) {
+        this.recipesArray = recipesArray;
+        this.context = context;
+        this.showFavorites = showFavorites;
     }
 
     @NonNull
@@ -40,6 +51,8 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.RecipeView
 
     @Override
     public void onBindViewHolder(@NonNull RecipeViewHolder holder, int position) {
+        final Recipe recipe = recipesArray.get(position);
+
         //sending recipe's information to the holder, so it will appear in the single row view
         holder.recipeName.setText(recipesArray.get(position).getName());
         holder.recipeDescription.setText(recipesArray.get(position).getText());
@@ -48,6 +61,7 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.RecipeView
                 .load(recipesArray.get(position).getImage())
                 .placeholder(R.drawable.icon)
                 .into(holder.image);
+        holder.favorite.setVisibility(showFavorites ? View.VISIBLE : View.GONE);
     }
 
     @Override
@@ -56,11 +70,12 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.RecipeView
         return recipesArray.size();
     }
 
+
     //creating class RecipeViewHolder, for displaying the recipes in the recycler view
     public class RecipeViewHolder extends RecyclerView.ViewHolder {
         //each single row will contain the recipe name and recipe description
         TextView recipeName, recipeDescription, categoryTV;
-        ImageView image;
+        ImageView image, favorite;
 
         public RecipeViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -87,6 +102,21 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.RecipeView
             recipeDescription = itemView.findViewById(R.id.recipeDescriptionRow);
             categoryTV = itemView.findViewById(R.id.type);
             image = itemView.findViewById(R.id.imageSingleRow);
+            favorite = itemView.findViewById(R.id.favorite);
+            favorite.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    int position = getAdapterPosition();
+                    Recipe recipe = recipesArray.get(position);
+                    recipe.setFavorite(!recipe.isFavorite());
+                    if (recipe.isFavorite()) {
+                        recipe.getFavoritedBy().add(FirebaseAuth.getInstance().getUid());
+                    }else {
+                        recipe.getFavoritedBy().remove(FirebaseAuth.getInstance().getUid());
+                    }
+                    DataBaseManager.addToFavorites(recipe, null);
+                }
+            });
         }
     }
 }

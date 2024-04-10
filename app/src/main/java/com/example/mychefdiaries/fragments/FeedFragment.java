@@ -21,6 +21,7 @@ import com.example.mychefdiaries.R;
 import com.example.mychefdiaries.Utilities.SearchRecipeByCategoryActivity;
 import com.example.mychefdiaries.Utilities.SearchRecipeByTextActivity;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
@@ -77,7 +78,7 @@ public class FeedFragment extends Fragment {
     }
 
     private void fetchData() {
-        DataBaseManager.getRecipes(new OnSuccessListener<QuerySnapshot>() {
+        DataBaseManager.getRecipesByUserId(FirebaseAuth.getInstance().getUid(), new OnSuccessListener<QuerySnapshot>() {
             @Override
             public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
                 //queryDocumentSnapshots.getDocuments().forEach(documentSnapshot -> recipeArrayList.add(documentSnapshot.toObject(Recipe.class)));

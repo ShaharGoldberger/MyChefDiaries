@@ -1,5 +1,9 @@
 package com.example.mychefdiaries.Model;
 
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
+
 public class Recipe {
 
     public String id;
@@ -9,6 +13,28 @@ public class Recipe {
     private String createdUserId;
     private String minutes;
     private String category;
+    private ArrayList<String> likedByUsers;
+
+    private Set<String> favoritedBy = new HashSet<>();
+
+    public Set<String> getFavoritedBy() {
+        return favoritedBy;
+    }
+
+    public void setFavoritedBy(Set<String> favoritedBy) {
+        this.favoritedBy = favoritedBy;
+    }
+
+    private boolean isFavorite = false;
+
+    public boolean isFavorite() {
+        return isFavorite;
+    }
+
+    public void setFavorite(boolean favorite) {
+        isFavorite = favorite;
+    }
+
     public Recipe() {
     }
 
@@ -93,5 +119,13 @@ public class Recipe {
 
     public void setCategory(String category) {
         this.category = category;
+    }
+
+    public ArrayList<String> getLikedByUsers() {
+        return likedByUsers;
+    }
+
+    public void setLikedByUsers(ArrayList<String> likedByUsers) {
+        this.likedByUsers = likedByUsers;
     }
 }

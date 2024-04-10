@@ -2,7 +2,7 @@ package com.example.mychefdiaries.Utilities;
 
 import android.content.Intent;
 import android.os.Bundle;
-
+import android.view.View;
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
@@ -11,12 +11,10 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.example.mychefdiaries.Adapters.CategoryAdapter;
 import com.example.mychefdiaries.Model.Category;
 import com.example.mychefdiaries.Model.CategoryType;
 import com.example.mychefdiaries.R;
-
 import java.util.ArrayList;
 
 public class SearchRecipeByCategoryActivity extends AppCompatActivity {
@@ -44,14 +42,17 @@ public class SearchRecipeByCategoryActivity extends AppCompatActivity {
         categories.add(new Category(R.drawable.fish, CategoryType.FISH));
         categories.add(new Category(R.drawable.cupcake, CategoryType.DESSERTS));
 
-        adapter = new CategoryAdapter(categories);
-        list.setAdapter(adapter);
+        // Create a click listener that will be called when a category is clicked
+        View.OnClickListener categoryClickListener = view -> {
+            String category = (String) view.getTag();
+            navigateToCategoryRecipes(category);
+        };
+
+        //adapter = new CategoryAdapter(categories);
+        CategoryAdapter adapter = new CategoryAdapter(categories, this);
+        //list.setAdapter(adapter);
         list.setLayoutManager(new GridLayoutManager(this, 2));
-
-
-
-
-
+        list.setAdapter(adapter);
     }
 
     private void setupCardClickListener(CardView cardView, String category) {

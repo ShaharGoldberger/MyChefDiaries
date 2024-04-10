@@ -12,15 +12,24 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.mychefdiaries.Adapters.RecipeAdapter;
+import com.example.mychefdiaries.DataBaseManager;
+import com.example.mychefdiaries.Model.CategoryType;
 import com.example.mychefdiaries.Model.Recipe;
 import com.example.mychefdiaries.R;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
+import java.util.List;
+import java.util.function.Consumer;
 
 public class CategoryRecipesActivity extends AppCompatActivity {
 
+    private CategoryType categoryType = CategoryType.BEEF;
     private RecyclerView recipesRecyclerView;
     private RecipeAdapter adapter;
     private ArrayList<Recipe> recipeList = new ArrayList<>();
@@ -31,6 +40,7 @@ public class CategoryRecipesActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_category_recipes);
+        categoryType = (CategoryType) CategoryType.valueOf(getIntent().getStringExtra("category"));
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
@@ -39,33 +49,33 @@ public class CategoryRecipesActivity extends AppCompatActivity {
 
         // Initialize RecyclerView
         recipesRecyclerView = findViewById(R.id.recipesRecyclerView);
-        recipesRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         adapter = new RecipeAdapter(recipeList);
         recipesRecyclerView.setAdapter(adapter);
 
         // Fetch category from intent
-        String category = getIntent().getStringExtra("category");
-        if (category != null) {
-            fetchRecipesForCategory(category);
-        }
+        fetchRecipesForCategory();
+
     }
 
-    private void fetchRecipesForCategory(String category) {
-        db.collection("recipes")
-                .whereEqualTo("category", category)
-                .get()
-                .addOnCompleteListener(task -> {
-                    if (task.isSuccessful()) {
-                        recipeList.clear();
-                        for (QueryDocumentSnapshot document : task.getResult()) {
-                            Recipe recipe = document.toObject(Recipe.class);
-                            recipeList.add(recipe);
-                        }
-                        adapter.notifyDataSetChanged();
-                    } else {
-                        Log.d("CategoryRecipesActivity", "Error getting documents: ", task.getException());
+    private void fetchRecipesForCategory() {
+        DataBaseManager.getRecipesByCategory(categoryType, new OnSuccessListener<QuerySnapshot>() {
+            @Override
+            public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                queryDocumentSnapshots.getDocuments().forEach(new Consumer<DocumentSnapshot>() {
+                    @Override
+                    public void accept(DocumentSnapshot documentSnapshot) {
+                        Recipe recipe = documentSnapshot.toObject(Recipe.class);
+                        recipe.setFavorite(recipe.getFavoritedBy().contains(FirebaseAuth.getInstance().getUid()));
+                        recipeList.add(documentSnapshot.toObject(Recipe.class));
                     }
                 });
+                adapter.notifyDataSetChanged();
+
+            }
+        });
     }
 
+
 }
+
+

@@ -8,6 +8,7 @@
     android:orientation="vertical"
     android:gravity="center"
     android:padding="16dp"
+    android:background="@drawable/splasha_activity_background"
     tools:context=".Model.LogInActivity">
 
     <ImageView

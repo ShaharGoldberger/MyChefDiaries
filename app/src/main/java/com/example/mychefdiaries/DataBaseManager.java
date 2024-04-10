@@ -1,9 +1,11 @@
 package com.example.mychefdiaries;
 
+import android.util.Log;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 
+import com.example.mychefdiaries.Model.CategoryType;
 import com.example.mychefdiaries.Model.Recipe;
 import com.example.mychefdiaries.Model.User;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -11,6 +13,7 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
 
@@ -18,6 +21,7 @@ public class DataBaseManager {
 
     private static final String USERS = "users";
     private static final String RECIPES = "recipes";
+    private static final String FAVORITES = "favorites";
 
     public static void saveUser(User user, OnCompleteListener<Void> listener) {
         FirebaseFirestore.getInstance()
@@ -51,5 +55,42 @@ public class DataBaseManager {
                 .collection(RECIPES)
                 .get()
                 .addOnSuccessListener(listener);
+    }
+
+    public static void getRecipesByUserId(String uid, OnSuccessListener<QuerySnapshot> listener) {
+        FirebaseFirestore.getInstance()
+                .collection(USERS)
+                .document(uid)
+                .collection(RECIPES)
+                .get()
+                .addOnSuccessListener(listener);
+    }
+
+    //for favorites recipes
+    public static void likeRecipe(String recipeId, String userId) {
+        FirebaseFirestore.getInstance().collection(RECIPES).document(recipeId)
+                .update("likedByUsers", FieldValue.arrayUnion(userId))
+                .addOnSuccessListener(aVoid -> Log.d("LikeRecipe", "Recipe successfully liked"))
+                .addOnFailureListener(e -> Log.w("LikeRecipe", "Error liking recipe", e));
+    }
+
+    public static void unlikeRecipe(String recipeId, String userId) {
+        FirebaseFirestore.getInstance().collection(RECIPES).document(recipeId)
+                .update("likedByUsers", FieldValue.arrayRemove(userId))
+                .addOnSuccessListener(aVoid -> Log.d("UnlikeRecipe", "Recipe successfully unliked"))
+                .addOnFailureListener(e -> Log.w("UnlikeRecipe", "Error unliking recipe", e));
+    }
+
+    public static void getRecipesByCategory(CategoryType categoryType,  OnSuccessListener<QuerySnapshot> listener) {
+        FirebaseFirestore.getInstance().collection(RECIPES)
+                .whereEqualTo("category", categoryType)
+                .get()
+                .addOnSuccessListener(listener);
+    }
+
+    public static void addToFavorites(Recipe recipe, OnSuccessListener<QuerySnapshot> listener) {
+        FirebaseFirestore.getInstance().collection(RECIPES)
+                .document(recipe.getId())
+                .set(recipe);
     }
 }

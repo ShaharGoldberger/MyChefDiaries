@@ -58,6 +58,14 @@
             android:text="Category"
             />
 
+        <ImageView
+            android:id="@+id/favorite"
+            android:src="@drawable/baseline_add_file_alternate_24"
+            android:layout_margin="8dp"
+            android:layout_alignParentEnd="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
     </RelativeLayout>
 
 </androidx.cardview.widget.CardView>
