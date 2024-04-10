@@ -12,6 +12,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.TextView;
 
 import com.example.mychefdiaries.Adapters.RecipeAdapter;
 import com.example.mychefdiaries.CreateRecipeActivity;
@@ -23,6 +24,7 @@ import com.example.mychefdiaries.Utilities.SearchRecipeByTextActivity;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
@@ -50,6 +52,7 @@ public class FeedFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
         RecyclerView list = view.findViewById(R.id.list);
         adapter = new RecipeAdapter(recipeArrayList);
         list.setAdapter(adapter);
@@ -109,7 +112,6 @@ public class FeedFragment extends Fragment {
         }
 
     }
-
 
     private void goToAddRecepie() {
         Intent intent = new Intent(requireContext(), CreateRecipeActivity.class);

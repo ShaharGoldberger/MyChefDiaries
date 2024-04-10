@@ -15,6 +15,7 @@
        android:id="@+id/navigation"
        android:layout_width="match_parent"
        android:layout_height="wrap_content"
-      app:menu="@menu/menu"/>
+       android:background="@color/carrot_orange"
+       app:menu="@menu/menu"/>
 
 </androidx.appcompat.widget.LinearLayoutCompat>

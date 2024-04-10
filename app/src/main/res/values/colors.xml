@@ -13,8 +13,33 @@
 
     <color name="splash_activity_background">#C8B477</color>
     <color name="splash_activity_end_color">#B5A986</color>
+    <color name="orange">#D19742</color>
 
+    <color name="cherry_tomato_red">#F44336</color>  <!-- Vivid red for accents -->
+    <color name="carrot_orange">#FF9800</color>      <!-- Warm orange for interactive elements -->
 
+    <!-- Secondary Colors -->
+    <color name="maize_yellow">#ECDD59</color>       <!-- Bright yellow for notifications -->
+    <color name="apple_green">#8BC34A</color>        <!-- Fresh green for progress bars -->
+
+    <!-- Background Colors -->
+    <color name="off_white">#F5F5F5</color>          <!-- Soft off-white for backgrounds -->
+    <color name="light_gray">#BDBDBD</color>         <!-- Light gray for secondary backgrounds -->
+
+    <color name="berry_blue">#3F51B5</color>         <!-- Deep blue for key accents -->
+    <color name="saffron">#FFC107</color>            <!-- Saffron yellow for highlights -->
+
+    <color name="cream_background">#F5F5F5</color>
+    <color name="dark_slate_gray">#2F4F4F</color>
+    <color name="sage_green">#9DBF9E</color>
+    <color name="old_lace">#FDF5E6</color>
+    <color name="stronger_old_lace">#F6E8CE</color>
+
+    <color name="pastel_pink">#fcbad3</color>
+    <color name="powder_blue">#a2d2ff</color>
+    <color name="mint_green">#9bf6ff</color>
+    <color name="lemon_yellow">#ffffb3</color>
+    <color name="lavender">#bdb2ff</color>
 
 
 

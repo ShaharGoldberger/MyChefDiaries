@@ -10,6 +10,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@color/stronger_old_lace"
         android:padding="16dp">
 
         <ImageView

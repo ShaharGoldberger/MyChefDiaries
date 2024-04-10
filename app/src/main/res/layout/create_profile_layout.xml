@@ -5,7 +5,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/splasha_activity_background"
+    android:background="@color/cream_background"
     android:orientation="vertical"
     android:gravity="center"
     android:padding="16dp"
@@ -41,11 +41,14 @@
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:textStyle="bold"
         android:hint="@string/enter_email">
 
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:textColor="@color/light_gray"
             android:id="@+id/email"/>
 
     </com.google.android.material.textfield.TextInputLayout>
@@ -60,6 +63,8 @@
             android:layout_width="match_parent"
             android:inputType="textPassword"
             android:id="@+id/password"
+            android:textStyle="bold"
+            android:textColor="@color/light_gray"
             android:layout_height="wrap_content"/>
 
     </com.google.android.material.textfield.TextInputLayout>
@@ -73,6 +78,8 @@
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
             android:id="@+id/full_name"
+            android:textStyle="bold"
+            android:textColor="@color/light_gray"
             android:layout_height="wrap_content"/>
 
     </com.google.android.material.textfield.TextInputLayout>
@@ -82,6 +89,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
+        android:backgroundTint="@color/carrot_orange"
         android:text="@string/create"/>
 
 </LinearLayout>

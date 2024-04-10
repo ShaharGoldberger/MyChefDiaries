@@ -5,7 +5,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/splasha_activity_background"
+    android:background="@color/cream_background"
     tools:context=".Utilities.SearchRecipeByTextActivity">
 
     <ImageView
@@ -29,7 +29,8 @@
         android:ems="10"
         android:hint= "@string/Ingredient_by"
         android:inputType="textPersonName"
-        android:textColor="@color/white"
+        android:textColor="@color/light_gray"
+        android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -43,7 +44,7 @@
         android:layout_marginStart="32dp"
         android:layout_marginTop="20dp"
         android:layout_marginEnd="32dp"
-        android:backgroundTint="@color/light_brown"
+        android:backgroundTint="@color/carrot_orange"
         android:text="@string/search"
         android:textAllCaps="false"
         android:textColor="@color/white"

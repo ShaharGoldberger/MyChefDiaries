@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@drawable/splasha_activity_background"
+    android:background="@color/cream_background"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".fragments.FeedFragment">
 
@@ -23,7 +23,7 @@
             android:layout_weight="1"
             android:layout_height="wrap_content"
             android:text="@string/create_recipe"
-            android:backgroundTint="@color/light_brown"
+            android:backgroundTint="@color/carrot_orange"
             android:layout_marginBottom="16dp" />
 
         <Button
@@ -32,16 +32,38 @@
             android:layout_weight="1"
             android:layout_height="wrap_content"
             android:text="@string/search_by_category"
-            android:backgroundTint="@color/light_brown" />
+            android:backgroundTint="@color/carrot_orange" />
         <Button
             android:id="@+id/search_by_text"
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="wrap_content"
             android:text="@string/search_by_text"
-            android:backgroundTint="@color/light_brown" />
+            android:backgroundTint="@color/carrot_orange" />
 
     </LinearLayout>
+
+    <TextView
+        android:id="@+id/helloUserText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="8dp"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        android:textColor="@android:color/darker_gray"
+        android:text="Hello!" />
+
+    <TextView
+        android:id="@+id/recipeIntroText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="4dp"
+        android:textSize="25sp"
+        android:textStyle="bold"
+        android:textColor="@android:color/darker_gray"
+        android:text="Here are your recipes ->" />
 
 
     <androidx.recyclerview.widget.RecyclerView
@@ -49,5 +71,6 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
+        android:background="@color/cream_background"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
 </LinearLayout>

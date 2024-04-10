@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/splasha_activity_background"
+    android:background="@color/cream_background"
     android:orientation="vertical"
     tools:context=".fragments.CartFragment">
 
@@ -16,7 +16,7 @@
         android:hint="Add ingredients"
         android:inputType="textMultiLine"
         android:paddingLeft="10dp"
-        android:textColor="#000000" />
+        android:textColor="@color/light_gray" />
 
     <Button
         android:id="@+id/addIngredientToListBtn"
@@ -24,8 +24,8 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginTop="12dp"
-        android:background="@drawable/splasha_activity_background"
         android:text="Add"
+        android:backgroundTint="@color/carrot_orange"
         android:textAllCaps="false"
         android:textColor="@color/white"
         android:textSize="20sp" />

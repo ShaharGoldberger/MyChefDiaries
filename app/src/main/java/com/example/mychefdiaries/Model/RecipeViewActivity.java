@@ -3,6 +3,7 @@ package com.example.mychefdiaries.Model;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -34,6 +35,9 @@ public class RecipeViewActivity extends AppCompatActivity {
             ingredientsPreview.setText(intent.getStringExtra("ingredientsKey") != null ? intent.getStringExtra("ingredientsKey") : "N/A");
             durationPreview.setText(intent.getStringExtra("duration") != null ? intent.getStringExtra("duration") : "N/A"); // Corrected to match intent extra key for duration
             categoryPreview.setText(intent.getStringExtra("categoryKey") != null ? intent.getStringExtra("categoryKey") : "N/A");
+        }  else {
+            Toast.makeText(this, "Error loading recipe details.", Toast.LENGTH_SHORT).show();
+            finish();  // Close activity if there is no recipe data
         }
     }
 }

@@ -8,7 +8,7 @@
     android:orientation="vertical"
     android:gravity="center"
     android:padding="16dp"
-    android:background="@drawable/splasha_activity_background"
+    android:background="@color/cream_background"
     tools:context=".Model.LogInActivity">
 
     <ImageView
@@ -27,7 +27,9 @@
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/email"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:textColor="@color/light_gray"/>
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -41,7 +43,9 @@
             android:id="@+id/password"
             android:layout_width="match_parent"
             android:inputType="textPassword"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:textColor="@color/light_gray"/>
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -50,6 +54,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
+        android:backgroundTint="@color/carrot_orange"
         android:text="@string/sign_in"/>
 
     <TextView
@@ -59,6 +64,7 @@
         android:gravity="center"
         android:layout_marginTop="16dp"
         android:textStyle="bold"
+        android:textColor="@color/light_gray"
         android:text="@string/create_profile"/>
 
 </LinearLayout>

@@ -5,7 +5,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/splasha_activity_background"
+    android:background="@color/cream_background"
     tools:context=".Model.LogInActivity">
 
     <LinearLayout
@@ -155,11 +155,11 @@
                 android:id="@+id/desserts_button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:buttonTint="@color/carrot_orange"
                 android:text="Desserts" />
         </RadioGroup>
     </LinearLayout>
 </ScrollView>
-
 
 
 <Button
@@ -167,6 +167,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
+            android:backgroundTint="@color/carrot_orange"
             android:text="@string/create"/>
 
     </LinearLayout>
