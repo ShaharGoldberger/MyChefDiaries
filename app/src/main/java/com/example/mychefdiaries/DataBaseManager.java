@@ -13,6 +13,7 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
@@ -80,4 +81,11 @@ public class DataBaseManager {
     }
 
 
+    public static void getUserById(String uid, OnSuccessListener<DocumentSnapshot> listener) {
+        FirebaseFirestore.getInstance()
+                .collection(USERS)
+                .document(uid)
+                .get()
+                .addOnSuccessListener(listener);
+    }
 }

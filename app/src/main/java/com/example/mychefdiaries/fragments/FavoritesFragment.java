@@ -9,13 +9,20 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 
 import com.example.mychefdiaries.Adapters.RecipeAdapter;
+import com.example.mychefdiaries.DataBaseManager;
 import com.example.mychefdiaries.Model.Recipe;
 import com.example.mychefdiaries.R;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
+import java.util.function.Consumer;
 
 public class FavoritesFragment extends Fragment {
 
@@ -58,21 +65,31 @@ public class FavoritesFragment extends Fragment {
     private void setupRecyclerView(View view) {
         recipesRecyclerView = view.findViewById(R.id.recipesRecyclerView);
         recipesRecyclerView.setLayoutManager(new LinearLayoutManager(view.getContext()));
-        recipeAdapter = new RecipeAdapter(favoriteRecipes);
+        recipeAdapter = new RecipeAdapter(favoriteRecipes, true, new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                favoriteRecipes.remove(position);
+                recipeAdapter.notifyItemRemoved(position);
+            }
+        });
         recipesRecyclerView.setAdapter(recipeAdapter);
     }
 
     private void loadFavoriteRecipes() {
-        db.collection("recipes")
-                .whereArrayContains("favoritedBy", currentUserId)
-                .get()
-                .addOnSuccessListener(queryDocumentSnapshots -> {
-                    favoriteRecipes.clear();
-                    for (com.google.firebase.firestore.DocumentSnapshot document : queryDocumentSnapshots.getDocuments()) {
-                        Recipe recipe = document.toObject(Recipe.class);
-                        favoriteRecipes.add(recipe);
+        DataBaseManager.getRecipes(new OnSuccessListener<QuerySnapshot>() {
+            @Override
+            public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                queryDocumentSnapshots.getDocuments().forEach(new Consumer<DocumentSnapshot>() {
+                    @Override
+                    public void accept(DocumentSnapshot documentSnapshot) {
+                        Recipe recipe = documentSnapshot.toObject(Recipe.class);
+                        if (recipe.getFavoritedBy().containsKey(FirebaseAuth.getInstance().getUid())){
+                            favoriteRecipes.add(recipe);
+                        }
                     }
-                    recipeAdapter.notifyDataSetChanged();
                 });
+                recipeAdapter.notifyDataSetChanged();
+            }
+        });
     }
 }

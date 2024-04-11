@@ -52,7 +52,7 @@
         android:textSize="30sp"
         android:textStyle="bold"
         android:textColor="@android:color/darker_gray"
-        android:text="Hello!" />
+        android:text="Hello " />
 
     <TextView
         android:id="@+id/recipeIntroText"

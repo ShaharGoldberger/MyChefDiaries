@@ -41,6 +41,7 @@ public class LogInActivity extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
+        //FirebaseAuth.getInstance().signOut();
         setContentView(R.layout.login_layout); // setContentView(R.layout.login); sets the UI layout for the activity from a layout resource file named login.xml.
         // This block of code sets an OnApplyWindowInsetsListener on the view with ID main. It adjusts the padding of the view to account for system bars like the status and navigation bars, ensuring the content doesn't overlap with them.
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {

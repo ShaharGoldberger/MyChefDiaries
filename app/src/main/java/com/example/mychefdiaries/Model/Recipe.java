@@ -1,10 +1,12 @@
 package com.example.mychefdiaries.Model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Set;
 
-public class Recipe {
+public class Recipe implements Serializable {
 
     public String id;
     private String name;
@@ -15,15 +17,7 @@ public class Recipe {
     private String category;
     private ArrayList<String> likedByUsers;
 
-    private Set<String> favoritedBy = new HashSet<>();
-
-    public Set<String> getFavoritedBy() {
-        return favoritedBy;
-    }
-
-    public void setFavoritedBy(Set<String> favoritedBy) {
-        this.favoritedBy = favoritedBy;
-    }
+    private HashMap<String, String> favoritedBy = new HashMap<>();
 
     private boolean isFavorite = false;
 
@@ -35,7 +29,12 @@ public class Recipe {
         isFavorite = favorite;
     }
 
+    public HashMap<String, String> getFavoritedBy() {
+        return favoritedBy;
+    }
+
     public Recipe() {
+
     }
 
     public Recipe(String id, String name, String ingredients, String image, String createdUserId, String minutes, String category) {
@@ -127,5 +126,9 @@ public class Recipe {
 
     public void setLikedByUsers(ArrayList<String> likedByUsers) {
         this.likedByUsers = likedByUsers;
+    }
+
+    public void setFavoritedBy(HashMap<String, String> favoritedBy) {
+        this.favoritedBy = favoritedBy;
     }
 }

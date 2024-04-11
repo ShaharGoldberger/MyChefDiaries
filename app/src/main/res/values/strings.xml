@@ -32,7 +32,7 @@
     <string name="search_by_category">Search Recipe By Category</string>
     <string name="search_by_text">Search Recipe By Text</string>
     <string name="Ingredient_by">By Ingredient</string>
-
+    <string name="sign_out">Sign Out</string>
 
 
 </resources>

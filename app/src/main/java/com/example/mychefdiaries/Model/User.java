@@ -12,16 +12,19 @@ public class User {
     private String userId;
     private String email;
     private String imageUrl;
+
+    private String fullName;
     private ArrayList<String> recipesIds = new ArrayList<>();
 
 
     public User() {
     }
 
-    public User(String userId, String email, String imageUrl) {
+    public User(String userId, String email,String fullName, String imageUrl) {
         this.userId = userId;
         this.email = email;
         this.imageUrl = imageUrl;
+        this.fullName = fullName;
         this.recipesIds = new ArrayList<>();
     }
 
@@ -59,19 +62,11 @@ public class User {
         this.imageUrl = imageUrl;
     }
 
+    public String getFullName() {
+        return fullName;
+    }
 
-    // Method to add a recipe ID to the user's list of recipes
-    public void addRecipeId(String recipeId) {
-        if (this.recipesIds == null) {
-            this.recipesIds = new ArrayList<>();
-        }
-        if (!this.recipesIds.contains(recipeId)) {
-            this.recipesIds.add(recipeId);
-
-            // Update Firestore with the new list
-            FirebaseFirestore db = FirebaseFirestore.getInstance();
-            db.collection("users").document(this.userId)
-                    .update("recipesIds", this.recipesIds);
-        }
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
     }
 }

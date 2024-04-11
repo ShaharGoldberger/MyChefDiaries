@@ -49,7 +49,7 @@ public class CategoryRecipesActivity extends AppCompatActivity {
 
         // Initialize RecyclerView
         recipesRecyclerView = findViewById(R.id.recipesRecyclerView);
-        adapter = new RecipeAdapter(recipeList);
+        adapter = new RecipeAdapter(recipeList, true);
         recipesRecyclerView.setAdapter(adapter);
 
         // Fetch category from intent
@@ -65,7 +65,7 @@ public class CategoryRecipesActivity extends AppCompatActivity {
                     @Override
                     public void accept(DocumentSnapshot documentSnapshot) {
                         Recipe recipe = documentSnapshot.toObject(Recipe.class);
-                        recipe.setFavorite(recipe.getFavoritedBy().contains(FirebaseAuth.getInstance().getUid()));
+                        recipe.setFavorite(recipe.getFavoritedBy().containsKey(FirebaseAuth.getInstance().getUid()));
                         recipeList.add(documentSnapshot.toObject(Recipe.class));
                     }
                 });

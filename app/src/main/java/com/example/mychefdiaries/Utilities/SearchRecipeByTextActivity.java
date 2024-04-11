@@ -51,7 +51,7 @@ public class SearchRecipeByTextActivity extends AppCompatActivity {
 
         RecyclerView recyclerView = findViewById(R.id.list);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        adapter = new RecipeAdapter(filteredRecipe);
+        adapter = new RecipeAdapter(filteredRecipe, true);
         recyclerView.setAdapter(adapter);
         ingredientsSearchInput = findViewById(R.id.ingredientsSearchInput);
         searchButton = findViewById(R.id.searchButton);

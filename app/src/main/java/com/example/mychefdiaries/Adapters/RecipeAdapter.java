@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -29,6 +30,8 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.RecipeView
 
     private boolean showFavorites = false;
 
+    AdapterView.OnItemClickListener onFavoriteClicked;
+
 
     public RecipeAdapter(ArrayList<Recipe> recipesArray) {
         this.recipesArray = recipesArray;
@@ -39,6 +42,13 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.RecipeView
         this.recipesArray = recipesArray;
         this.context = context;
         this.showFavorites = showFavorites;
+    }
+
+    public RecipeAdapter(ArrayList<Recipe> recipesArray, boolean showFavorites, AdapterView.OnItemClickListener onFavoriteClicked) {
+        this.recipesArray = recipesArray;
+        this.context = context;
+        this.showFavorites = showFavorites;
+        this.onFavoriteClicked = onFavoriteClicked;
     }
 
     @NonNull
@@ -61,7 +71,13 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.RecipeView
                 .load(recipesArray.get(position).getImage())
                 .placeholder(R.drawable.icon)
                 .into(holder.image);
-        holder.favorite.setVisibility(showFavorites ? View.VISIBLE : View.GONE);
+        holder.favorite.setVisibility(showFavorites && !recipesArray.get(position).getCreatedUserId().equals(FirebaseAuth.getInstance().getUid())
+                ? View.VISIBLE : View.GONE);
+        if (!recipesArray.get(position).isFavorite()) {
+            holder.favorite.setImageResource(R.drawable.full_heart);
+        }else {
+            holder.favorite.setImageResource(R.drawable.heart);
+        }
     }
 
     @Override
@@ -109,11 +125,15 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.RecipeView
                     Recipe recipe = recipesArray.get(position);
                     recipe.setFavorite(!recipe.isFavorite());
                     if (recipe.isFavorite()) {
-                        recipe.getFavoritedBy().add(FirebaseAuth.getInstance().getUid());
+                        recipe.getFavoritedBy().put(FirebaseAuth.getInstance().getUid(), "");
                     }else {
                         recipe.getFavoritedBy().remove(FirebaseAuth.getInstance().getUid());
                     }
                     DataBaseManager.addToFavorites(recipe, null);
+                    notifyItemChanged(position);
+                    if (onFavoriteClicked != null) {
+                        onFavoriteClicked.onItemClick(null, null, position, -1);
+                    }
                 }
             });
         }

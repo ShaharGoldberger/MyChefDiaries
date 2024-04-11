@@ -165,7 +165,7 @@ public class CreateProfileActivity extends AppCompatActivity {
     }
 
     private void saveUserToFireStore(String uid, String imageUrl) {
-        User user = new User(uid, FirebaseAuth.getInstance().getCurrentUser().getEmail(), imageUrl);
+        User user = new User(uid, FirebaseAuth.getInstance().getCurrentUser().getEmail(), fullNameET.getText().toString(), imageUrl);
         DataBaseManager.saveUser(user, task -> {
             progressDialog.dismiss();
             if (task.isSuccessful()) {
