@@ -21,23 +21,22 @@
             android:id="@+id/create"
             android:layout_width="0dp"
             android:layout_weight="1"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:text="@string/create_recipe"
-            android:backgroundTint="@color/carrot_orange"
-            android:layout_marginBottom="16dp" />
+            android:backgroundTint="@color/carrot_orange" />
 
         <Button
             android:id="@+id/search_by_category"
             android:layout_width="0dp"
             android:layout_weight="1"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:text="@string/search_by_category"
             android:backgroundTint="@color/carrot_orange" />
         <Button
             android:id="@+id/search_by_text"
             android:layout_width="0dp"
             android:layout_weight="1"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:text="@string/search_by_text"
             android:backgroundTint="@color/carrot_orange" />
 

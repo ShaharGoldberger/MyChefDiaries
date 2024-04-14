@@ -18,6 +18,7 @@ import com.example.mychefdiaries.Adapters.RecipeAdapter;
 import com.example.mychefdiaries.CreateRecipeActivity;
 import com.example.mychefdiaries.DataBaseManager;
 import com.example.mychefdiaries.Model.Recipe;
+import com.example.mychefdiaries.Model.User;
 import com.example.mychefdiaries.R;
 import com.example.mychefdiaries.Utilities.SearchRecipeByCategoryActivity;
 import com.example.mychefdiaries.Utilities.SearchRecipeByTextActivity;
@@ -35,6 +36,8 @@ public class FeedFragment extends Fragment {
     private RecipeAdapter adapter;
     private ArrayList<Recipe> recipeArrayList = new ArrayList<>();
     private boolean refreshFeed = false;
+
+    private TextView helloTV;
 
     public FeedFragment() {
         // Required empty public constructor
@@ -57,6 +60,8 @@ public class FeedFragment extends Fragment {
         adapter = new RecipeAdapter(recipeArrayList);
         list.setAdapter(adapter);
 
+        helloTV = view.findViewById(R.id.helloUserText);
+
         Button createBT = view.findViewById(R.id.create);
         createBT.setOnClickListener(v->{
             goToAddRecepie();
@@ -71,11 +76,20 @@ public class FeedFragment extends Fragment {
         SearchByTextBT.setOnClickListener(v->{
             goToSearchRecipeByText();
         });
-        //recipeArrayList.clear();
+
+        DataBaseManager.getUserById(FirebaseAuth.getInstance().getUid(), new OnSuccessListener<DocumentSnapshot>() {
+            @Override
+            public void onSuccess(DocumentSnapshot documentSnapshot) {
+                User user = documentSnapshot.toObject(User.class);
+                helloTV.setText(getString(R.string.hello_user, user.getFullName()));
+
+            }
+        });
         fetchData();
     }
 
     private void fetchData() {
+        recipeArrayList.clear();
         DataBaseManager.getRecipesByUserId(FirebaseAuth.getInstance().getUid(), new OnSuccessListener<QuerySnapshot>() {
             @Override
             public void onSuccess(QuerySnapshot queryDocumentSnapshots) {

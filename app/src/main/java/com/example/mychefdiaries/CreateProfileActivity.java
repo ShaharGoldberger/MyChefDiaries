@@ -49,6 +49,8 @@ public class CreateProfileActivity extends AppCompatActivity {
     private Bitmap imageBitmap;
 
     private ProgressDialog progressDialog;
+    private FirebaseAuth mAuth;
+
 
     private ActivityResultLauncher<Intent> cameraLauncher = registerForActivityResult(
             new ActivityResultContracts.StartActivityForResult(), result ->{
@@ -77,6 +79,9 @@ public class CreateProfileActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.create_profile_layout);
+        mAuth = FirebaseAuth.getInstance();
+
+
         progressDialog = new ProgressDialog(this);
         progressDialog.setMessage(getString(R.string.please_wait));
         profileImage = findViewById(R.id.profile_image);
@@ -119,6 +124,11 @@ public class CreateProfileActivity extends AppCompatActivity {
             passwordET.setError(getString(R.string.please_enter_password));
             isValidInput = false;
         }
+        if (fullNameET.getText().toString().isEmpty()) {
+            fullNameET.setError(getString(R.string.enter_full_name));
+            isValidInput = false;
+        }
+
 
         if (isValidInput) {
             progressDialog.show();
@@ -138,7 +148,6 @@ public class CreateProfileActivity extends AppCompatActivity {
                             }
                         }
                     });
-
         }
     }
 
@@ -161,7 +170,9 @@ public class CreateProfileActivity extends AppCompatActivity {
                     });
                 }
             });
-         }
+         } else {
+            saveUserToFireStore(uid,null);
+        }
     }
 
     private void saveUserToFireStore(String uid, String imageUrl) {
@@ -180,8 +191,6 @@ public class CreateProfileActivity extends AppCompatActivity {
                         .show();
             }
         });
-
-
     }
 
     private void openGallery() {

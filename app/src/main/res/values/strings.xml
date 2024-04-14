@@ -13,6 +13,7 @@
     <string name="search_recipes">Search_recipe</string>
     <string name="create_profile_successfully">Create profile successfully</string>
     <string name="please_wait">Please wait...</string>
+    <string name="hello_user">Welcome back, %1$s</string>
     <string name="profile">Profile</string>
     <string name="favorites">Favorites</string>
     <string name="feed">Feed</string>
@@ -33,6 +34,10 @@
     <string name="search_by_text">Search Recipe By Text</string>
     <string name="Ingredient_by">By Ingredient</string>
     <string name="sign_out">Sign Out</string>
+    <string name="your_email">Your Email</string>
+    <string name="your_name">Your name</string>
+    <string name="save">Save</string>
+    <string name="update_profile_successfully">Profile is updated successfully</string>
 
 
 </resources>

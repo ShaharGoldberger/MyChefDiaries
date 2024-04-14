@@ -74,9 +74,9 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.RecipeView
         holder.favorite.setVisibility(showFavorites && !recipesArray.get(position).getCreatedUserId().equals(FirebaseAuth.getInstance().getUid())
                 ? View.VISIBLE : View.GONE);
         if (!recipesArray.get(position).isFavorite()) {
-            holder.favorite.setImageResource(R.drawable.full_heart);
-        }else {
             holder.favorite.setImageResource(R.drawable.heart);
+        }else {
+            holder.favorite.setImageResource(R.drawable.full_heart);
         }
     }
 

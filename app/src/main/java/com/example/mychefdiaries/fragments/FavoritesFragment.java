@@ -76,6 +76,7 @@ public class FavoritesFragment extends Fragment {
     }
 
     private void loadFavoriteRecipes() {
+        favoriteRecipes.clear();
         DataBaseManager.getRecipes(new OnSuccessListener<QuerySnapshot>() {
             @Override
             public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
