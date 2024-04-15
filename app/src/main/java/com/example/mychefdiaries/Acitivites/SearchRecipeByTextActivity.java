@@ -30,7 +30,6 @@ public class SearchRecipeByTextActivity extends AppCompatActivity {
 
     private EditText ingredientsSearchInput;
     private Button searchButton;
-
     private ArrayList<Recipe> recipeArrayList = new ArrayList<>();
     private ArrayList<Recipe> filteredRecipe = new ArrayList<>();
 
@@ -65,9 +64,7 @@ public class SearchRecipeByTextActivity extends AppCompatActivity {
                 });
             }
         });
-
         searchButton.setOnClickListener(v -> arrangeData());
-
     }
 
     private void arrangeData(){
@@ -75,10 +72,9 @@ public class SearchRecipeByTextActivity extends AppCompatActivity {
         filteredRecipe.addAll(recipeArrayList.stream().filter(new Predicate<Recipe>() {
             @Override
             public boolean test(Recipe recipe) {
-                return recipe.getIngredients() != null && recipe.getIngredients().contains(ingredientsSearchInput.getText().toString());
+                return (recipe.getIngredients() != null && recipe.getIngredients().toLowerCase().contains(ingredientsSearchInput.getText().toString().toLowerCase())) || (recipe.getName() != null && recipe.getName().toLowerCase().contains(ingredientsSearchInput.getText().toString().toLowerCase()));
             }
         }).collect(Collectors.toList()));
-
         adapter.notifyDataSetChanged();
     }
 

@@ -38,9 +38,7 @@ public class CreateProfileActivity extends AppCompatActivity {
 
     private TextInputEditText emailET, passwordET, fullNameET;
     private ImageView profileImage;
-
     private Bitmap imageBitmap;
-
     private ProgressDialog progressDialog;
     private FirebaseAuth mAuth;
     private ImageView cameraIV;
@@ -77,15 +75,9 @@ public class CreateProfileActivity extends AppCompatActivity {
         setContentView(R.layout.create_profile_layout);
         mAuth = FirebaseAuth.getInstance();
 
-
         progressDialog = new ProgressDialog(this);
         progressDialog.setMessage(getString(R.string.please_wait));
-        //profileImage = findViewById(R.id.profile_image);
-        //emailET = findViewById(R.id.email);
-        //passwordET = findViewById(R.id.password);
-        //fullNameET = findViewById(R.id.full_name);
-        //ImageView cameraIV = findViewById(R.id.camera);
-        //ImageView galleryIV = findViewById(R.id.gallery);
+
         findViews();
 
         cameraIV.setOnClickListener(new View.OnClickListener() {

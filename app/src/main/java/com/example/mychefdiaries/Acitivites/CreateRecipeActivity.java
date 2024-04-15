@@ -48,13 +48,11 @@ public class CreateRecipeActivity extends AppCompatActivity {
     private String selectedCategory = "";
     private RadioGroup categoryRadioGroup;
     private RadioButton beef_btn, dairy_btn, fish_btn, vegan_btn, cocktails_btn, desserts_btn;
-    private FirebaseFirestore db;
     private FirebaseAuth mAuth;
     private String recipeImageUrl;
     private ImageView cameraIV;
     private ImageView galleryIV;
     private Button createBT;
-
 
     private ActivityResultLauncher<Intent> cameraLauncher = registerForActivityResult(
             new ActivityResultContracts.StartActivityForResult(), result ->{

@@ -16,9 +16,7 @@ public class Recipe implements Serializable {
     private String minutes;
     private String category;
     private ArrayList<String> likedByUsers;
-
     private HashMap<String, String> favoritedBy = new HashMap<>();
-
     private boolean isFavorite = false;
 
     public boolean isFavorite() {
@@ -73,10 +71,6 @@ public class Recipe implements Serializable {
 
     public void setCreatedUserId(String createdUserId) {
         this.createdUserId = createdUserId;
-    }
-
-    public String getTitle() {
-        return name;
     }
 
     public String getImage() {
