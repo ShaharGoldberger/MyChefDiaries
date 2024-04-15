@@ -22,6 +22,7 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.example.mychefdiaries.Utilities.CameraHelper;
 import com.example.mychefdiaries.Utilities.DataBaseManager;
 import com.example.mychefdiaries.Model.Recipe;
 import com.example.mychefdiaries.R;
@@ -53,29 +54,30 @@ public class CreateRecipeActivity extends AppCompatActivity {
     private ImageView cameraIV;
     private ImageView galleryIV;
     private Button createBT;
+    private ActivityResultLauncher<Intent> cameraLauncher;
+    private ActivityResultLauncher<Intent> galleryLauncher;
 
-    private ActivityResultLauncher<Intent> cameraLauncher = registerForActivityResult(
-            new ActivityResultContracts.StartActivityForResult(), result ->{
-                if (result.getResultCode() == Activity.RESULT_OK) {
-                    imageBitmapForRecipe = (Bitmap) result.getData().getExtras().get("data");
-                    recipeImage.setImageBitmap(imageBitmapForRecipe);
-                }
+//    private ActivityResultLauncher<Intent> cameraLauncher = registerForActivityResult(
+//            new ActivityResultContracts.StartActivityForResult(), result ->{
+//                if (result.getResultCode() == Activity.RESULT_OK) {
+//                    imageBitmapForRecipe = (Bitmap) result.getData().getExtras().get("data");
+//                    recipeImage.setImageBitmap(imageBitmapForRecipe);
+//                }
+//            });
 
-            });
-
-    private ActivityResultLauncher<Intent> galleryLauncher = registerForActivityResult(
-            new ActivityResultContracts.StartActivityForResult(), result ->{
-                if (result.getResultCode() == Activity.RESULT_OK) {
-                    Uri uri = result.getData().getData();
-                    try {
-                        imageBitmapForRecipe = MediaStore.Images.Media.getBitmap(this.getContentResolver(), uri);
-                    } catch (IOException e) {
-                        throw new RuntimeException(e);
-                    }
-                    recipeImage.setImageBitmap(imageBitmapForRecipe);
-                }
-
-            });
+//    private ActivityResultLauncher<Intent> galleryLauncher = registerForActivityResult(
+//            new ActivityResultContracts.StartActivityForResult(), result ->{
+//                if (result.getResultCode() == Activity.RESULT_OK) {
+//                    Uri uri = result.getData().getData();
+//                    try {
+//                        imageBitmapForRecipe = MediaStore.Images.Media.getBitmap(this.getContentResolver(), uri);
+//                    } catch (IOException e) {
+//                        throw new RuntimeException(e);
+//                    }
+//                    recipeImage.setImageBitmap(imageBitmapForRecipe);
+//                }
+//
+//            });
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -91,6 +93,10 @@ public class CreateRecipeActivity extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
         findViews();
 
+        // Set up camera launcher using CameraHelper
+        cameraLauncher = CameraHelper.setupCameraLauncher(this, this::setImageBitmapForRecipe);
+        galleryLauncher = CameraHelper.setupGalleryLauncher(this, this::setImageBitmapForRecipe);
+
         categoryRadioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
@@ -105,8 +111,8 @@ public class CreateRecipeActivity extends AppCompatActivity {
             }
         });
 
-        cameraIV.setOnClickListener(v-> openCamera());
-        galleryIV.setOnClickListener(v-> openGallery());
+        cameraIV.setOnClickListener(v -> CameraHelper.openCamera(cameraLauncher));
+        galleryIV.setOnClickListener(v-> CameraHelper.openGallery(galleryLauncher));
 
         createBT.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -225,17 +231,9 @@ public class CreateRecipeActivity extends AppCompatActivity {
         });
     }
 
-    private void openGallery() {
-        Intent intent = new Intent();
-        intent.setType("image/*");
-        intent.setAction(Intent.ACTION_GET_CONTENT);
-        galleryLauncher.launch(intent);
+    private void setImageBitmapForRecipe(Bitmap bitmap) {
+        imageBitmapForRecipe = bitmap;
+        recipeImage.setImageBitmap(bitmap);
     }
-
-    private void openCamera() {
-        Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-        cameraLauncher.launch(intent);
-    }
-
 
 }
