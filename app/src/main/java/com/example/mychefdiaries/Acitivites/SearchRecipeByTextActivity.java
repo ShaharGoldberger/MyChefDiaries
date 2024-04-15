@@ -1,4 +1,4 @@
-package com.example.mychefdiaries.Utilities;
+package com.example.mychefdiaries.Acitivites;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
@@ -14,7 +14,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.mychefdiaries.Adapters.RecipeAdapter;
-import com.example.mychefdiaries.DataBaseManager;
+import com.example.mychefdiaries.Utilities.DataBaseManager;
 import com.example.mychefdiaries.Model.Recipe;
 import com.example.mychefdiaries.R;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -34,7 +34,6 @@ public class SearchRecipeByTextActivity extends AppCompatActivity {
     private ArrayList<Recipe> recipeArrayList = new ArrayList<>();
     private ArrayList<Recipe> filteredRecipe = new ArrayList<>();
 
-
     private RecipeAdapter adapter;
 
     @SuppressLint("WrongViewCast")
@@ -53,8 +52,7 @@ public class SearchRecipeByTextActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         adapter = new RecipeAdapter(filteredRecipe, true);
         recyclerView.setAdapter(adapter);
-        ingredientsSearchInput = findViewById(R.id.ingredientsSearchInput);
-        searchButton = findViewById(R.id.searchButton);
+        findViews();
 
         DataBaseManager.getRecipes(new OnSuccessListener<QuerySnapshot>() {
             @Override
@@ -82,5 +80,10 @@ public class SearchRecipeByTextActivity extends AppCompatActivity {
         }).collect(Collectors.toList()));
 
         adapter.notifyDataSetChanged();
+    }
+
+    private void findViews(){
+        ingredientsSearchInput = findViewById(R.id.ingredientsSearchInput);
+        searchButton = findViewById(R.id.searchButton);
     }
 }

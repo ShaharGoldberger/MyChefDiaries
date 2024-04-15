@@ -1,4 +1,4 @@
-package com.example.mychefdiaries;
+package com.example.mychefdiaries.Acitivites;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -22,8 +22,9 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.example.mychefdiaries.Utilities.DataBaseManager;
 import com.example.mychefdiaries.Model.Recipe;
-import com.example.mychefdiaries.Model.User;
+import com.example.mychefdiaries.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
@@ -37,7 +38,6 @@ import com.google.firebase.storage.UploadTask;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.UUID;
 
 public class CreateRecipeActivity extends AppCompatActivity {
@@ -50,8 +50,10 @@ public class CreateRecipeActivity extends AppCompatActivity {
     private RadioButton beef_btn, dairy_btn, fish_btn, vegan_btn, cocktails_btn, desserts_btn;
     private FirebaseFirestore db;
     private FirebaseAuth mAuth;
-
     private String recipeImageUrl;
+    private ImageView cameraIV;
+    private ImageView galleryIV;
+    private Button createBT;
 
 
     private ActivityResultLauncher<Intent> cameraLauncher = registerForActivityResult(
@@ -89,20 +91,7 @@ public class CreateRecipeActivity extends AppCompatActivity {
         });
 
         mAuth = FirebaseAuth.getInstance();
-
-        recipeName = findViewById(R.id.name);
-        ingredients = findViewById(R.id.ingridients); // Remember to fix the typo if you update it in XML
-        instructions = findViewById(R.id.instructions);
-        duration = findViewById(R.id.duration);
-        recipeImage = findViewById(R.id.profile_image);
-
-        categoryRadioGroup= findViewById(R.id.categoryRadioGroup);
-        beef_btn = findViewById(R.id.beef_button);
-        dairy_btn = findViewById(R.id.dairy_button);
-        fish_btn = findViewById(R.id.fish_button);
-        vegan_btn = findViewById(R.id.vegan_button);
-        cocktails_btn = findViewById(R.id.cocktails_button);
-        desserts_btn = findViewById(R.id.desserts_button);
+        findViews();
 
         categoryRadioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
@@ -118,19 +107,37 @@ public class CreateRecipeActivity extends AppCompatActivity {
             }
         });
 
-        ImageView cameraIV = findViewById(R.id.camera);
-        ImageView galleryIV = findViewById(R.id.gallery);
-
         cameraIV.setOnClickListener(v-> openCamera());
         galleryIV.setOnClickListener(v-> openGallery());
 
-        Button createBT = findViewById(R.id.create);
         createBT.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 createRecipe();
             }
         });
+    }
+
+    private void findViews() {
+        recipeName = findViewById(R.id.name);
+        ingredients = findViewById(R.id.ingridients); // Remember to fix the typo if you update it in XML
+        instructions = findViewById(R.id.instructions);
+        duration = findViewById(R.id.duration);
+        recipeImage = findViewById(R.id.profile_image);
+
+        categoryRadioGroup= findViewById(R.id.categoryRadioGroup);
+        beef_btn = findViewById(R.id.beef_button);
+        dairy_btn = findViewById(R.id.dairy_button);
+        fish_btn = findViewById(R.id.fish_button);
+        vegan_btn = findViewById(R.id.vegan_button);
+        cocktails_btn = findViewById(R.id.cocktails_button);
+        desserts_btn = findViewById(R.id.desserts_button);
+
+        cameraIV = findViewById(R.id.camera);
+        galleryIV = findViewById(R.id.gallery);
+
+        createBT = findViewById(R.id.create);
+
     }
 
     private void createRecipe() {

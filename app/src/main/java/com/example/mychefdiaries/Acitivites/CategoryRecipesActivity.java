@@ -1,18 +1,16 @@
-package com.example.mychefdiaries.Utilities;
+package com.example.mychefdiaries.Acitivites;
 
 import android.os.Bundle;
-import android.util.Log;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.mychefdiaries.Adapters.RecipeAdapter;
-import com.example.mychefdiaries.DataBaseManager;
+import com.example.mychefdiaries.Utilities.DataBaseManager;
 import com.example.mychefdiaries.Model.CategoryType;
 import com.example.mychefdiaries.Model.Recipe;
 import com.example.mychefdiaries.R;
@@ -20,11 +18,9 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
-import java.util.List;
 import java.util.function.Consumer;
 
 public class CategoryRecipesActivity extends AppCompatActivity {
@@ -48,7 +44,8 @@ public class CategoryRecipesActivity extends AppCompatActivity {
         });
 
         // Initialize RecyclerView
-        recipesRecyclerView = findViewById(R.id.recipesRecyclerView);
+        //recipesRecyclerView = findViewById(R.id.recipesRecyclerView);
+        findViews();
         adapter = new RecipeAdapter(recipeList, true);
         recipesRecyclerView.setAdapter(adapter);
 
@@ -57,7 +54,11 @@ public class CategoryRecipesActivity extends AppCompatActivity {
 
     }
 
-    private void fetchRecipesForCategory() {
+    private void findViews() {
+        recipesRecyclerView = findViewById(R.id.recipesRecyclerView);
+    }
+
+        private void fetchRecipesForCategory() {
         DataBaseManager.getRecipesByCategory(categoryType, new OnSuccessListener<QuerySnapshot>() {
             @Override
             public void onSuccess(QuerySnapshot queryDocumentSnapshots) {

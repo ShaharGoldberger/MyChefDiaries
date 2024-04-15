@@ -1,4 +1,4 @@
-package com.example.mychefdiaries.Model;
+package com.example.mychefdiaries.Acitivites;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.view.View;
 
+import com.example.mychefdiaries.Acitivites.LogInActivity;
 import com.example.mychefdiaries.R;
 import com.example.mychefdiaries.Utilities.BackgroundSound;
 import com.google.android.material.imageview.ShapeableImageView;

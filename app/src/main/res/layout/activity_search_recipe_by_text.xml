@@ -5,13 +5,13 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/cream_background"
-    tools:context=".Utilities.SearchRecipeByTextActivity">
+    android:background="@drawable/wallpaper03"
+    tools:context=".Acitivites.SearchRecipeByTextActivity">
 
     <ImageView
         android:id="@+id/appLogo"
-        android:layout_width="200dp"
-        android:layout_height="200dp"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
         android:src="@drawable/icon"
         app:layout_constraintBottom_toTopOf="@+id/ingredientsSearchInput"
         app:layout_constraintEnd_toEndOf="parent"
@@ -29,7 +29,7 @@
         android:ems="10"
         android:hint= "@string/Ingredient_by"
         android:inputType="textPersonName"
-        android:textColor="@color/light_gray"
+        android:textColor="@color/black"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -47,7 +47,7 @@
         android:backgroundTint="@color/carrot_orange"
         android:text="@string/search"
         android:textAllCaps="false"
-        android:textColor="@color/white"
+        android:textColor="@color/black"
         android:textSize="18sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"

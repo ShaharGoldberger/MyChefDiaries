@@ -13,9 +13,8 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.mychefdiaries.Model.Category;
-import com.example.mychefdiaries.Model.Recipe;
 import com.example.mychefdiaries.R;
-import com.example.mychefdiaries.Utilities.CategoryRecipesActivity;
+import com.example.mychefdiaries.Acitivites.CategoryRecipesActivity;
 
 import java.util.ArrayList;
 

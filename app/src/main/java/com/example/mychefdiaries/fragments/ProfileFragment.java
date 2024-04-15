@@ -23,15 +23,12 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
-import com.example.mychefdiaries.CreateProfileActivity;
-import com.example.mychefdiaries.DataBaseManager;
-import com.example.mychefdiaries.Model.LogInActivity;
-import com.example.mychefdiaries.Model.MainActivity;
+import com.example.mychefdiaries.Utilities.DataBaseManager;
+import com.example.mychefdiaries.Acitivites.LogInActivity;
 import com.example.mychefdiaries.Model.User;
 import com.example.mychefdiaries.R;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.textfield.TextInputEditText;
-import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.storage.FirebaseStorage;

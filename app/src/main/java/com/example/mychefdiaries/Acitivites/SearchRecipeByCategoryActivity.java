@@ -1,4 +1,4 @@
-package com.example.mychefdiaries.Utilities;
+package com.example.mychefdiaries.Acitivites;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,6 +11,8 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.mychefdiaries.Acitivites.CategoryRecipesActivity;
 import com.example.mychefdiaries.Adapters.CategoryAdapter;
 import com.example.mychefdiaries.Model.Category;
 import com.example.mychefdiaries.Model.CategoryType;
@@ -19,7 +21,7 @@ import java.util.ArrayList;
 
 public class SearchRecipeByCategoryActivity extends AppCompatActivity {
 
-    private CategoryAdapter adapter;
+    //private CategoryAdapter adapter;
     private ArrayList<Category> categories = new ArrayList<>();
 
     @Override
@@ -35,12 +37,7 @@ public class SearchRecipeByCategoryActivity extends AppCompatActivity {
 
         RecyclerView list = findViewById(R.id.list);
 
-        categories.add(new Category(R.drawable.beef, CategoryType.BEEF));
-        categories.add(new Category(R.drawable.milk, CategoryType.DAIRY));
-        categories.add(new Category(R.drawable.vegan, CategoryType.VEGAN));
-        categories.add(new Category(R.drawable.cocktail, CategoryType.COKTAILES));
-        categories.add(new Category(R.drawable.fish, CategoryType.FISH));
-        categories.add(new Category(R.drawable.cupcake, CategoryType.DESSERTS));
+        addCategory();
 
         // Create a click listener that will be called when a category is clicked
         View.OnClickListener categoryClickListener = view -> {
@@ -63,6 +60,16 @@ public class SearchRecipeByCategoryActivity extends AppCompatActivity {
         Intent intent = new Intent(this, CategoryRecipesActivity.class);
         intent.putExtra("category", category);
         startActivity(intent);
+    }
+
+
+    private void addCategory(){
+        categories.add(new Category(R.drawable.beef, CategoryType.BEEF));
+        categories.add(new Category(R.drawable.milk, CategoryType.DAIRY));
+        categories.add(new Category(R.drawable.vegan, CategoryType.VEGAN));
+        categories.add(new Category(R.drawable.cocktail, CategoryType.COKTAILES));
+        categories.add(new Category(R.drawable.fish, CategoryType.FISH));
+        categories.add(new Category(R.drawable.cupcake, CategoryType.DESSERTS));
     }
 
 }

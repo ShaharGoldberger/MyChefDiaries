@@ -13,7 +13,7 @@
     <string name="search_recipes">Search_recipe</string>
     <string name="create_profile_successfully">Create profile successfully</string>
     <string name="please_wait">Please wait...</string>
-    <string name="hello_user">Welcome back, %1$s</string>
+    <string name="hello_user">Hello, %1$s</string>
     <string name="profile">Profile</string>
     <string name="favorites">Favorites</string>
     <string name="feed">Feed</string>

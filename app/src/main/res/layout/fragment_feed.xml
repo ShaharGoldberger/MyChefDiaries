@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@color/cream_background"
+    android:background="@drawable/wallpaper03"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".fragments.FeedFragment">
 
@@ -23,6 +23,8 @@
             android:layout_weight="1"
             android:layout_height="match_parent"
             android:text="@string/create_recipe"
+            android:textStyle="bold"
+            android:textColor="@android:color/black"
             android:backgroundTint="@color/carrot_orange" />
 
         <Button
@@ -31,6 +33,8 @@
             android:layout_weight="1"
             android:layout_height="match_parent"
             android:text="@string/search_by_category"
+            android:textStyle="bold"
+            android:textColor="@android:color/black"
             android:backgroundTint="@color/carrot_orange" />
         <Button
             android:id="@+id/search_by_text"
@@ -38,6 +42,8 @@
             android:layout_weight="1"
             android:layout_height="match_parent"
             android:text="@string/search_by_text"
+            android:textStyle="bold"
+            android:textColor="@android:color/black"
             android:backgroundTint="@color/carrot_orange" />
 
     </LinearLayout>
@@ -50,7 +56,7 @@
         android:layout_marginTop="8dp"
         android:textSize="30sp"
         android:textStyle="bold"
-        android:textColor="@android:color/darker_gray"
+        android:textColor="@android:color/black"
         android:text="Hello " />
 
     <TextView
@@ -61,8 +67,8 @@
         android:layout_marginTop="4dp"
         android:textSize="25sp"
         android:textStyle="bold"
-        android:textColor="@android:color/darker_gray"
-        android:text="Here are your recipes ->" />
+        android:textColor="@android:color/black"
+        android:text="Your Recipes ->" />
 
 
     <androidx.recyclerview.widget.RecyclerView

@@ -12,7 +12,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 
 import com.example.mychefdiaries.Adapters.RecipeAdapter;
-import com.example.mychefdiaries.DataBaseManager;
+import com.example.mychefdiaries.Utilities.DataBaseManager;
 import com.example.mychefdiaries.Model.Recipe;
 import com.example.mychefdiaries.R;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -29,7 +29,7 @@ public class FavoritesFragment extends Fragment {
     private RecyclerView recipesRecyclerView;
     private RecipeAdapter recipeAdapter;
     private ArrayList<Recipe> favoriteRecipes = new ArrayList<>();
-    private FirebaseFirestore db = FirebaseFirestore.getInstance();
+    //private FirebaseFirestore db = FirebaseFirestore.getInstance();
     private String currentUserId;
 
 

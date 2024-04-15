@@ -14,14 +14,13 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
-import com.example.mychefdiaries.DataBaseManager;
+import com.example.mychefdiaries.Utilities.DataBaseManager;
 import com.example.mychefdiaries.Model.Recipe;
-import com.example.mychefdiaries.Model.RecipeViewActivity;
+import com.example.mychefdiaries.Acitivites.RecipeViewActivity;
 import com.example.mychefdiaries.R;
 import com.google.firebase.auth.FirebaseAuth;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.RecipeViewHolder> {
     private ArrayList<Recipe> recipesArray;

@@ -1,4 +1,4 @@
-package com.example.mychefdiaries.Model;
+package com.example.mychefdiaries.Acitivites;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -18,11 +18,7 @@ public class RecipeViewActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.recipe_view);
 
-        namePreview = findViewById(R.id.namePreview);
-        descriptionPreview = findViewById(R.id.descriptionPreview);
-        ingredientsPreview = findViewById(R.id.ingredientsPreview);
-        durationPreview = findViewById(R.id.duration);
-        categoryPreview = findViewById(R.id.categoryPreview);
+        findViews();
 
         //get intent "putExtra" keys, for displaying each recipe's details
         // Get intent extras
@@ -40,4 +36,13 @@ public class RecipeViewActivity extends AppCompatActivity {
             finish();  // Close activity if there is no recipe data
         }
     }
+
+    private void findViews(){
+        namePreview = findViewById(R.id.namePreview);
+        descriptionPreview = findViewById(R.id.descriptionPreview);
+        ingredientsPreview = findViewById(R.id.ingredientsPreview);
+        durationPreview = findViewById(R.id.duration);
+        categoryPreview = findViewById(R.id.categoryPreview);
+    }
+
 }

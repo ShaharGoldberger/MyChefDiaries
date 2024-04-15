@@ -7,8 +7,8 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:padding="8dp"
-    android:background="@color/cream_background"
-    tools:context=".Utilities.SearchRecipeByCategoryActivity">
+    android:background="@drawable/wallpaper02"
+    tools:context=".Acitivites.SearchRecipeByCategoryActivity">
 
     <TextView
         android:id="@+id/myRecipesTextView"
@@ -21,8 +21,8 @@
         android:layout_marginEnd="12dp"
         android:layout_marginBottom="12dp"
         android:text="Recipes Categories"
-        android:textColor="@color/light_gray"
-        android:textSize="30sp"
+        android:textColor="@color/black"
+        android:textSize="40sp"
         android:textStyle="bold" />
 
     <androidx.recyclerview.widget.RecyclerView

@@ -1,6 +1,9 @@
-package com.example.mychefdiaries;
+package com.example.mychefdiaries.Utilities;
 
+import android.content.Context;
 import android.util.Log;
+import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -17,12 +20,17 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
+import com.google.firebase.firestore.SetOptions;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class DataBaseManager {
 
     private static final String USERS = "users";
     private static final String RECIPES = "recipes";
-    private static final String FAVORITES = "favorites";
+    //private static final String FAVORITES = "favorites";
 
     public static void saveUser(User user, OnCompleteListener<Void> listener) {
         FirebaseFirestore.getInstance()
@@ -88,4 +96,8 @@ public class DataBaseManager {
                 .get()
                 .addOnSuccessListener(listener);
     }
+
+
+
+
 }

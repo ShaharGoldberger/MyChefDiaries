@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/splasha_activity_background"
-    tools:context=".Model.SplashActivity">
+    android:background="@drawable/wallpaer01"
+    tools:context=".Acitivites.SplashActivity">
 
     <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/splash_IMG_logo"
@@ -14,5 +14,17 @@
         android:src="@drawable/icon"
         android:layout_centerInParent="true">
     </com.google.android.material.imageview.ShapeableImageView>
+
+
+    <TextView
+        android:id="@+id/splash_TXT_developer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/splash_IMG_logo"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="8dp"
+        android:text="Developed by- Shahar Goldberger"
+        android:textSize="10sp"
+        android:textColor="@android:color/black" />
 
 </RelativeLayout>

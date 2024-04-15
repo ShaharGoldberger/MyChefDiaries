@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/cream_background"
+    android:background="@drawable/wallpaper04"
     android:orientation="vertical"
     tools:context=".fragments.CartFragment">
 
@@ -13,10 +13,12 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:ems="10"
-        android:hint="Add ingredients"
+        android:hint="Add Ingredients For Shopping Cart"
+        android:textColorHint="@color/black"
         android:inputType="textMultiLine"
         android:paddingLeft="10dp"
-        android:textColor="@color/light_gray" />
+        android:textColor="@color/black"
+        android:textStyle="bold"/>
 
     <Button
         android:id="@+id/addIngredientToListBtn"
@@ -27,7 +29,7 @@
         android:text="Add"
         android:backgroundTint="@color/carrot_orange"
         android:textAllCaps="false"
-        android:textColor="@color/white"
+        android:textColor="@color/black"
         android:textSize="20sp" />
 
     <ListView

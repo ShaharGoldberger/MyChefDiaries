@@ -1,4 +1,4 @@
-package com.example.mychefdiaries.Model;
+package com.example.mychefdiaries.Acitivites;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;

@@ -1,7 +1,5 @@
-package com.example.mychefdiaries;
+package com.example.mychefdiaries.Acitivites;
 
-import androidx.activity.result.ActivityResult;
-import androidx.activity.result.ActivityResultCallback;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
@@ -20,26 +18,21 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
 
-import com.example.mychefdiaries.Model.MainActivity;
+import com.example.mychefdiaries.Utilities.DataBaseManager;
 import com.example.mychefdiaries.Model.User;
-import com.firebase.ui.auth.FirebaseAuthUIActivityResultContract;
-import com.firebase.ui.auth.IdpResponse;
-import com.firebase.ui.auth.data.model.FirebaseAuthUIAuthenticationResult;
+import com.example.mychefdiaries.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.ktx.Firebase;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
-import java.util.UUID;
 
 public class CreateProfileActivity extends AppCompatActivity {
 
@@ -50,6 +43,9 @@ public class CreateProfileActivity extends AppCompatActivity {
 
     private ProgressDialog progressDialog;
     private FirebaseAuth mAuth;
+    private ImageView cameraIV;
+    private ImageView galleryIV;
+    private Button createBT;
 
 
     private ActivityResultLauncher<Intent> cameraLauncher = registerForActivityResult(
@@ -84,12 +80,13 @@ public class CreateProfileActivity extends AppCompatActivity {
 
         progressDialog = new ProgressDialog(this);
         progressDialog.setMessage(getString(R.string.please_wait));
-        profileImage = findViewById(R.id.profile_image);
-        emailET = findViewById(R.id.email);
-        passwordET = findViewById(R.id.password);
-        fullNameET = findViewById(R.id.full_name);
-        ImageView cameraIV = findViewById(R.id.camera);
-        ImageView galleryIV = findViewById(R.id.gallery);
+        //profileImage = findViewById(R.id.profile_image);
+        //emailET = findViewById(R.id.email);
+        //passwordET = findViewById(R.id.password);
+        //fullNameET = findViewById(R.id.full_name);
+        //ImageView cameraIV = findViewById(R.id.camera);
+        //ImageView galleryIV = findViewById(R.id.gallery);
+        findViews();
 
         cameraIV.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -105,13 +102,23 @@ public class CreateProfileActivity extends AppCompatActivity {
             }
         });
 
-        Button createBT = findViewById(R.id.create);
+        //Button createBT = findViewById(R.id.create);
         createBT.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 createUser();
             }
         });
+    }
+
+    private void findViews() {
+        profileImage = findViewById(R.id.profile_image);
+        emailET = findViewById(R.id.email);
+        passwordET = findViewById(R.id.password);
+        fullNameET = findViewById(R.id.full_name);
+        cameraIV = findViewById(R.id.camera);
+        galleryIV = findViewById(R.id.gallery);
+        createBT = findViewById(R.id.create);
     }
 
     private void createUser() {
@@ -128,7 +135,6 @@ public class CreateProfileActivity extends AppCompatActivity {
             fullNameET.setError(getString(R.string.enter_full_name));
             isValidInput = false;
         }
-
 
         if (isValidInput) {
             progressDialog.show();

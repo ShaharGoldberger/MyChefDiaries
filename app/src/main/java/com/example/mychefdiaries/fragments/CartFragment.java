@@ -1,5 +1,6 @@
 package com.example.mychefdiaries.fragments;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -15,11 +16,8 @@ import android.widget.Toast;
 import androidx.fragment.app.Fragment;
 
 import com.example.mychefdiaries.R;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.SetOptions;
@@ -51,9 +49,7 @@ public class CartFragment extends Fragment {
         mAuth = FirebaseAuth.getInstance();
         db = FirebaseFirestore.getInstance();
 
-        addIngredientsBtn = view.findViewById(R.id.addIngredientToListBtn);
-        ingredientsInput = view.findViewById(R.id.ingredientInputText);
-        ingredientsListView = view.findViewById(R.id.ingredientsListView);
+        findViews(view);
 
         adapter = new ArrayAdapter<>(getActivity(), android.R.layout.simple_list_item_multiple_choice, ingredientsArrayList);
         ingredientsListView.setAdapter(adapter);
@@ -80,6 +76,12 @@ public class CartFragment extends Fragment {
         });
 
         return view;
+    }
+
+    private void findViews(View view){
+        addIngredientsBtn = view.findViewById(R.id.addIngredientToListBtn);
+        ingredientsInput = view.findViewById(R.id.ingredientInputText);
+        ingredientsListView = view.findViewById(R.id.ingredientsListView);
     }
 
     private void addIngredientToDB(String ingredient) {

@@ -15,21 +15,19 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.mychefdiaries.Adapters.RecipeAdapter;
-import com.example.mychefdiaries.CreateRecipeActivity;
-import com.example.mychefdiaries.DataBaseManager;
+import com.example.mychefdiaries.Acitivites.CreateRecipeActivity;
+import com.example.mychefdiaries.Utilities.DataBaseManager;
 import com.example.mychefdiaries.Model.Recipe;
 import com.example.mychefdiaries.Model.User;
 import com.example.mychefdiaries.R;
-import com.example.mychefdiaries.Utilities.SearchRecipeByCategoryActivity;
-import com.example.mychefdiaries.Utilities.SearchRecipeByTextActivity;
+import com.example.mychefdiaries.Acitivites.SearchRecipeByCategoryActivity;
+import com.example.mychefdiaries.Acitivites.SearchRecipeByTextActivity;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentSnapshot;
-import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
-import java.util.function.Consumer;
 
 public class FeedFragment extends Fragment {
 

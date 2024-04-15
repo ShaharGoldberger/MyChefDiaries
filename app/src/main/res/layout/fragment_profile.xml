@@ -5,11 +5,11 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/cream_background"
+    android:background="@drawable/wallpaper03"
     android:orientation="vertical"
     android:gravity="center"
     android:padding="16dp"
-    tools:context=".Model.LogInActivity">
+    tools:context=".Acitivites.LogInActivity">
 
     <ImageView
         android:id="@+id/profile_image"
@@ -48,7 +48,7 @@
             android:layout_height="wrap_content"
             android:textStyle="bold"
             android:enabled="false"
-            android:textColor="@color/light_gray"
+            android:textColor="@color/black"
             android:id="@+id/email"/>
 
     </com.google.android.material.textfield.TextInputLayout>
@@ -63,7 +63,7 @@
             android:layout_width="match_parent"
             android:id="@+id/full_name"
             android:textStyle="bold"
-            android:textColor="@color/light_gray"
+            android:textColor="@color/black"
             android:layout_height="wrap_content"/>
 
     </com.google.android.material.textfield.TextInputLayout>
@@ -73,15 +73,19 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
+        android:textStyle="bold"
         android:backgroundTint="@color/carrot_orange"
-        android:text="@string/save"/>
+        android:text="@string/save"
+        android:textColor="@color/black"/>
 
     <Button
         android:id="@+id/sign_out"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
+        android:textStyle="bold"
         android:backgroundTint="@color/carrot_orange"
-        android:text="@string/sign_out"/>
+        android:text="@string/sign_out"
+        android:textColor="@color/black"/>
 
 </LinearLayout>
