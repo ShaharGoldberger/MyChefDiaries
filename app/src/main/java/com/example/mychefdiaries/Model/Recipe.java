@@ -8,7 +8,6 @@ import java.util.Set;
 
 public class Recipe implements Serializable {
 
-    public String id;
     private String name;
     private String ingredients;
     private String image;

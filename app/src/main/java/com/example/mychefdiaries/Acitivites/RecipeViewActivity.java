@@ -29,7 +29,7 @@ public class RecipeViewActivity extends AppCompatActivity {
             namePreview.setText(intent.getStringExtra("nameKey") != null ? intent.getStringExtra("nameKey") : "N/A");
             descriptionPreview.setText(intent.getStringExtra("descriptionKey") != null ? intent.getStringExtra("descriptionKey") : "N/A");
             ingredientsPreview.setText(intent.getStringExtra("ingredientsKey") != null ? intent.getStringExtra("ingredientsKey") : "N/A");
-            durationPreview.setText(intent.getStringExtra("duration") != null ? intent.getStringExtra("duration") : "N/A"); // Corrected to match intent extra key for duration
+            durationPreview.setText(intent.getStringExtra("duration") != null ? intent.getStringExtra("duration") + " minutes" : "N/A"); // Corrected to match intent extra key for duration
             categoryPreview.setText(intent.getStringExtra("categoryKey") != null ? intent.getStringExtra("categoryKey") : "N/A");
         }  else {
             Toast.makeText(this, "Error loading recipe details.", Toast.LENGTH_SHORT).show();
