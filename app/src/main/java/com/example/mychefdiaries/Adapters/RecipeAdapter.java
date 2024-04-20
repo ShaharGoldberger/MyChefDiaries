@@ -122,11 +122,11 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.RecipeView
                 public void onClick(View v) {
                     int position = getAdapterPosition();
                     Recipe recipe = recipesArray.get(position);
-                    recipe.setFavorite(!recipe.isFavorite());
+                    recipe.changeFavoriteStatus();
                     if (recipe.isFavorite()) {
-                        recipe.getFavoritedBy().put(FirebaseAuth.getInstance().getUid(), "");
-                    }else {
                         recipe.getFavoritedBy().remove(FirebaseAuth.getInstance().getUid());
+                    }else {
+                        recipe.getFavoritedBy().put(FirebaseAuth.getInstance().getUid(), "");
                     }
                     DataBaseManager.addToFavorites(recipe, null);
                     notifyItemChanged(position);

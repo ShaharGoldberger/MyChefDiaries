@@ -1,5 +1,7 @@
 package com.example.mychefdiaries.Model;
 
+import com.google.firebase.auth.FirebaseAuth;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -17,14 +19,19 @@ public class Recipe implements Serializable {
     private String category;
     private ArrayList<String> likedByUsers;
     private HashMap<String, String> favoritedBy = new HashMap<>();
-    private boolean isFavorite = false;
+    private boolean isfavorite = false;
 
     public boolean isFavorite() {
-        return isFavorite;
+        isfavorite = favoritedBy.containsKey(FirebaseAuth.getInstance().getUid());
+        return isfavorite;
     }
 
     public void setFavorite(boolean favorite) {
-        isFavorite = favorite;
+        isfavorite = favorite;
+    }
+
+    public void changeFavoriteStatus() {
+        this.isfavorite = !this.isfavorite;
     }
 
     public HashMap<String, String> getFavoritedBy() {

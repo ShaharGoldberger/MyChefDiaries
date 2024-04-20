@@ -15,8 +15,8 @@
 
         <ImageView
             android:id="@+id/imageSingleRow"
-            android:layout_width="75dp"
-            android:layout_height="75dp"
+            android:layout_width="120dp"
+            android:layout_height="125dp"
             android:src="@drawable/icon" />
 
         <TextView
