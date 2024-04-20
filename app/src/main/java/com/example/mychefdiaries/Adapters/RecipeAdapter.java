@@ -63,8 +63,8 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.RecipeView
         final Recipe recipe = recipesArray.get(position);
 
         //sending recipe's information to the holder, so it will appear in the single row view
-        holder.recipeName.setText("Racipe Name: " + recipesArray.get(position).getName());
-        holder.recipeDescription.setText("Description: " + recipesArray.get(position).getDescription());
+        holder.recipeName.setText("Dish: " + recipesArray.get(position).getName());
+        holder.recipeDescription.setText("Steps: " + recipesArray.get(position).getDescription());
         holder.categoryTV.setText("Category: " + recipesArray.get(position).getCategory());
         Glide.with(holder.itemView)
                 .load(recipesArray.get(position).getImage())

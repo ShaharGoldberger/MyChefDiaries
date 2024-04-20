@@ -29,7 +29,6 @@ public class CategoryRecipesActivity extends AppCompatActivity {
     private RecyclerView recipesRecyclerView;
     private RecipeAdapter adapter;
     private ArrayList<Recipe> recipeList = new ArrayList<>();
-    private FirebaseFirestore db = FirebaseFirestore.getInstance();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
