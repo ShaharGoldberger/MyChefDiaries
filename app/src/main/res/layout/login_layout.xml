@@ -8,7 +8,8 @@
     android:orientation="vertical"
     android:gravity="center"
     android:padding="16dp"
-    tools:context=".Model.LogInActivity">
+    android:background="@drawable/wallpaper03"
+    tools:context=".Acitivites.LogInActivity">
 
     <ImageView
         android:id="@+id/image"
@@ -26,7 +27,9 @@
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/email"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:textColor="@color/black"/>
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -40,7 +43,9 @@
             android:id="@+id/password"
             android:layout_width="match_parent"
             android:inputType="textPassword"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:textColor="@color/black"/>
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -49,7 +54,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:text="@string/sign_in"/>
+        android:backgroundTint="@color/carrot_orange"
+        android:text="@string/sign_in"
+        android:textColor="@color/black"/>
 
     <TextView
         android:id="@+id/sign_up"
@@ -58,6 +65,7 @@
         android:gravity="center"
         android:layout_marginTop="16dp"
         android:textStyle="bold"
-        android:text="@string/create_profile"/>
+        android:text="@string/create_profile"
+        android:textColor="@color/black"/>
 
 </LinearLayout>

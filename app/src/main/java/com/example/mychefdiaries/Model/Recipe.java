@@ -1,23 +1,62 @@
 package com.example.mychefdiaries.Model;
 
-public class Recipe {
+import com.google.firebase.auth.FirebaseAuth;
+
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Set;
+
+public class Recipe implements Serializable {
 
     public String id;
     private String name;
+    private String description;
     private String ingredients;
     private String image;
-    private User createdUser;
+    private String createdUserId;
     private String minutes;
     private String category;
-    public Recipe() {
+    private ArrayList<String> likedByUsers;
+    private HashMap<String, String> favoritedBy = new HashMap<>();
+    private boolean isfavorite = false;
+
+    public boolean isFavorite() {
+        isfavorite = favoritedBy.containsKey(FirebaseAuth.getInstance().getUid());
+        return isfavorite;
     }
 
-    public Recipe(String id, String name, String ingredients, String image, User createdUser, String minutes, String category) {
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public void setFavorite(boolean favorite) {
+        isfavorite = favorite;
+    }
+
+    public void changeFavoriteStatus() {
+        this.isfavorite = !this.isfavorite;
+    }
+
+    public HashMap<String, String> getFavoritedBy() {
+        return favoritedBy;
+    }
+
+    public Recipe() {
+
+    }
+
+    public Recipe(String id, String name, String ingredients, String image, String createdUserId, String minutes, String category) {
         this.id = id;
         this.name = name;
         this.ingredients = ingredients;
         this.image = image;
-        this.createdUser = createdUser;
+        this.createdUserId = createdUserId;
         this.minutes = minutes;
         this.category = category;
     }
@@ -42,34 +81,30 @@ public class Recipe {
         this.ingredients = ingredients;
     }
 
-    public User getCreatedUser() {
-        return createdUser;
+    public String getCreatedUserId() {
+        return createdUserId;
     }
 
-    public void setCreatedUser(User createdUser) {
-        this.createdUser = createdUser;
-    }
-
-    public String getTitle() {
-        return name;
+    public void setCreatedUserId(String createdUserId) {
+        this.createdUserId = createdUserId;
     }
 
     public String getImage() {
         return image;
     }
 
-    public String getText() {
-        return ingredients;
-    }
+//    public String getText() {
+//        return ingredients;
+//    }
 
 
     public void setTitle(String title) {
         this.name = title;
     }
 
-    public void setText(String text) {
-        this.ingredients = text;
-    }
+//    public void setText(String text) {
+//        this.ingredients = text;
+//    }
 
     public void setImage(String image) {
         this.image = image;
@@ -93,5 +128,17 @@ public class Recipe {
 
     public void setCategory(String category) {
         this.category = category;
+    }
+
+    public ArrayList<String> getLikedByUsers() {
+        return likedByUsers;
+    }
+
+    public void setLikedByUsers(ArrayList<String> likedByUsers) {
+        this.likedByUsers = likedByUsers;
+    }
+
+    public void setFavoritedBy(HashMap<String, String> favoritedBy) {
+        this.favoritedBy = favoritedBy;
     }
 }

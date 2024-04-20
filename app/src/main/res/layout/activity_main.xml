@@ -9,12 +9,13 @@
        android:id="@+id/container"
        android:layout_width="match_parent"
        android:layout_height="0dp"
-      android:layout_weight="1"/>
+       android:layout_weight="1"/>
 
    <com.google.android.material.bottomnavigation.BottomNavigationView
        android:id="@+id/navigation"
        android:layout_width="match_parent"
        android:layout_height="wrap_content"
-      app:menu="@menu/menu"/>
+       android:background="@color/carrot_orange"
+       app:menu="@menu/menu"/>
 
 </androidx.appcompat.widget.LinearLayoutCompat>

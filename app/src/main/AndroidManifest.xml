@@ -11,29 +11,32 @@
         android:icon="@drawable/icon"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
-        android:supportsRtl="true"
+        android:supportsRtl="false"
         android:theme="@style/Theme.MyChefDiaries"
         tools:targetApi="31">
         <activity
-            android:name=".Utilities.CategoryRecipesActivity"
+            android:name=".Acitivites.SearchRecipeByTextActivity"
             android:exported="false" />
         <activity
-            android:name=".Utilities.SearchRecipeByCategoryActivity"
+            android:name=".Acitivites.CategoryRecipesActivity"
             android:exported="false" />
         <activity
-            android:name=".CreateRecipeActivity"
+            android:name=".Acitivites.SearchRecipeByCategoryActivity"
             android:exported="false" />
         <activity
-            android:name=".Model.UploadRecipe"
+            android:name=".Acitivites.CreateRecipeActivity"
             android:exported="false" />
         <activity
-            android:name=".CreateProfileActivity"
+            android:name=".Acitivites.CreateProfileActivity"
             android:exported="false" />
         <activity
-            android:name=".Model.MainActivity"
+            android:name=".Acitivites.MainActivity"
             android:exported="false" />
         <activity
-            android:name=".Model.SplashActivity"
+            android:name=".Acitivites.RecipeViewActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Acitivites.SplashActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -42,7 +45,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".Model.LogInActivity"
+            android:name=".Acitivites.LogInActivity"
             android:exported="true" />
     </application>
 

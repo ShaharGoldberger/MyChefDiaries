@@ -10,12 +10,13 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@color/stronger_old_lace"
         android:padding="16dp">
 
         <ImageView
             android:id="@+id/imageSingleRow"
-            android:layout_width="75dp"
-            android:layout_height="75dp"
+            android:layout_width="120dp"
+            android:layout_height="125dp"
             android:src="@drawable/icon" />
 
         <TextView
@@ -43,6 +44,28 @@
             android:layout_below="@+id/recipeNameRow"
             android:text="Description"
             />
+
+        <TextView
+            android:id="@+id/type"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="18sp"
+            android:layout_toRightOf="@+id/imageSingleRow"
+            android:layout_toEndOf="@+id/imageSingleRow"
+            android:layout_marginLeft="10dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="5dp"
+            android:layout_below="@+id/recipeDescriptionRow"
+            android:text="Category"
+            />
+
+        <ImageView
+            android:id="@+id/favorite"
+            android:src="@drawable/full_heart"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_margin="8dp"
+            android:layout_alignParentEnd="true" />
 
     </RelativeLayout>
 

@@ -1,8 +1,9 @@
-package com.example.mychefdiaries.Model;
+package com.example.mychefdiaries.Acitivites;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -17,11 +18,7 @@ public class RecipeViewActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.recipe_view);
 
-        namePreview = findViewById(R.id.namePreview);
-        descriptionPreview = findViewById(R.id.descriptionPreview);
-        ingredientsPreview = findViewById(R.id.ingredientsPreview);
-        durationPreview = findViewById(R.id.duration);
-        categoryPreview = findViewById(R.id.categoryPreview);
+        findViews();
 
         //get intent "putExtra" keys, for displaying each recipe's details
         // Get intent extras
@@ -32,8 +29,20 @@ public class RecipeViewActivity extends AppCompatActivity {
             namePreview.setText(intent.getStringExtra("nameKey") != null ? intent.getStringExtra("nameKey") : "N/A");
             descriptionPreview.setText(intent.getStringExtra("descriptionKey") != null ? intent.getStringExtra("descriptionKey") : "N/A");
             ingredientsPreview.setText(intent.getStringExtra("ingredientsKey") != null ? intent.getStringExtra("ingredientsKey") : "N/A");
-            durationPreview.setText(intent.getStringExtra("duration") != null ? intent.getStringExtra("duration") : "N/A"); // Corrected to match intent extra key for duration
+            durationPreview.setText(intent.getStringExtra("duration") != null ? intent.getStringExtra("duration") + " minutes" : "N/A"); // Corrected to match intent extra key for duration
             categoryPreview.setText(intent.getStringExtra("categoryKey") != null ? intent.getStringExtra("categoryKey") : "N/A");
+        }  else {
+            Toast.makeText(this, "Error loading recipe details.", Toast.LENGTH_SHORT).show();
+            finish();  // Close activity if there is no recipe data
         }
     }
+
+    private void findViews(){
+        namePreview = findViewById(R.id.namePreview);
+        descriptionPreview = findViewById(R.id.descriptionPreview);
+        ingredientsPreview = findViewById(R.id.ingredientsPreview);
+        durationPreview = findViewById(R.id.duration);
+        categoryPreview = findViewById(R.id.categoryPreview);
+    }
+
 }

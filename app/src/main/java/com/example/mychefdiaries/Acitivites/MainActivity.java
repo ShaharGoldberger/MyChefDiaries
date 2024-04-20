@@ -1,4 +1,4 @@
-package com.example.mychefdiaries.Model;
+package com.example.mychefdiaries.Acitivites;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -10,6 +10,7 @@ import android.view.MenuItem;
 import android.widget.Button;
 
 import com.example.mychefdiaries.R;
+import com.example.mychefdiaries.fragments.CartFragment;
 import com.example.mychefdiaries.fragments.FavoritesFragment;
 import com.example.mychefdiaries.fragments.FeedFragment;
 import com.example.mychefdiaries.fragments.ProfileFragment;
@@ -21,6 +22,7 @@ public class MainActivity extends AppCompatActivity {
     private ProfileFragment profileFragment;
     private FavoritesFragment favoritesFragment;
     private FeedFragment feedFragment;
+    private CartFragment cartFragment;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,6 +47,11 @@ public class MainActivity extends AppCompatActivity {
                         profileFragment = new ProfileFragment();
                     }
                     fragment = profileFragment;
+                } else if (menuItem.getItemId() == R.id.shopping_cart) {
+                    if (cartFragment == null) {
+                        cartFragment = new CartFragment();
+                    }
+                    fragment = cartFragment;
                 }
 
                 getSupportFragmentManager().beginTransaction()

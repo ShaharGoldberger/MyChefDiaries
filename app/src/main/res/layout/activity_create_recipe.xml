@@ -5,8 +5,8 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/splasha_activity_background"
-    tools:context=".Model.LogInActivity">
+    android:background="@drawable/wallpaper03"
+    tools:context=".Acitivites.LogInActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -45,12 +45,14 @@
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/recipe_name">
+            android:hint="@string/recipe_name"
+            android:textStyle="bold">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/name"/>
+                android:textStyle="bold"/>
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -58,13 +60,14 @@
             android:layout_width="match_parent"
             android:layout_marginTop="16dp"
             android:layout_height="150dp"
-            android:hint="@string/ingridents">
+            android:hint="@string/ingridents"
+            android:textStyle="bold">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:inputType="textMultiLine"
                 android:id="@+id/ingridients"
-
+                android:textStyle="bold"
                 android:layout_height="match_parent"/>
 
         </com.google.android.material.textfield.TextInputLayout>
@@ -73,13 +76,15 @@
             android:layout_width="match_parent"
             android:layout_marginTop="16dp"
             android:layout_height="150dp"
-            android:hint="@string/instructions">
+            android:hint="@string/instructions"
+            android:textStyle="bold">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:inputType="textMultiLine"
                 android:id="@+id/instructions"
-                android:layout_height="match_parent"/>
+                android:layout_height="match_parent"
+                android:textStyle="bold"/>
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -87,13 +92,15 @@
             android:layout_width="match_parent"
             android:layout_marginTop="16dp"
             android:layout_height="wrap_content"
-            android:hint="@string/duration">
+            android:hint="@string/duration"
+            android:textStyle="bold">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:inputType="numberSigned"
                 android:id="@+id/duration"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content"
+                android:textStyle="bold"/>
         </com.google.android.material.textfield.TextInputLayout>
 
         <ScrollView
@@ -113,6 +120,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Choose a category"
+                android:textStyle="bold"
                 android:layout_marginBottom="20dp" />
 
             <RadioGroup
@@ -125,41 +133,47 @@
                 android:id="@+id/beef_button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Beef" />
+                android:text="Beef"
+                android:textStyle="bold"/>
 
             <RadioButton
                 android:id="@+id/dairy_button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Dairy" />
+                android:text="Dairy"
+                android:textStyle="bold"/>
 
             <RadioButton
                 android:id="@+id/fish_button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Fish" />
+                android:text="Fish"
+                android:textStyle="bold"/>
 
             <RadioButton
                 android:id="@+id/vegan_button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Vegan" />
+                android:text="Vegan"
+                android:textStyle="bold"/>
 
             <RadioButton
                 android:id="@+id/cocktails_button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Cocktails" />
+                android:text="Cocktails"
+                android:textStyle="bold"/>
 
             <RadioButton
                 android:id="@+id/desserts_button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Desserts" />
+                android:buttonTint="@color/carrot_orange"
+                android:text="Desserts"
+                android:textStyle="bold"/>
         </RadioGroup>
     </LinearLayout>
 </ScrollView>
-
 
 
 <Button
@@ -167,7 +181,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:text="@string/create"/>
+            android:backgroundTint="@color/carrot_orange"
+            android:text="@string/create"
+            android:textStyle="bold"
+            android:textColor="@android:color/black"/>
 
     </LinearLayout>
 

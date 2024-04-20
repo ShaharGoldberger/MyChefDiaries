@@ -1,42 +1,81 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/splasha_activity_background"
+    android:orientation="vertical"
+    android:background="@drawable/wallpaper03"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".fragments.FeedFragment">
-
-   <androidx.recyclerview.widget.RecyclerView
-       android:id="@+id/list"
-       android:layout_width="match_parent"
-       android:layout_height="match_parent"
-       app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
 
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
+        android:orientation="horizontal"
         android:padding="16dp"
         android:layout_gravity="center"
         android:gravity="center_horizontal">
 
-
         <Button
             android:id="@+id/create"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
             android:text="@string/create_recipe"
-            android:backgroundTint="@color/light_brown"
-            android:layout_marginBottom="16dp" />
+            android:textStyle="bold"
+            android:textColor="@android:color/black"
+            android:backgroundTint="@color/carrot_orange" />
 
         <Button
             android:id="@+id/search_by_category"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
             android:text="@string/search_by_category"
-            android:backgroundTint="@color/light_brown" />
+            android:textStyle="bold"
+            android:textColor="@android:color/black"
+            android:backgroundTint="@color/carrot_orange" />
+        <Button
+            android:id="@+id/search_by_text"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:text="@string/search_by_text"
+            android:textStyle="bold"
+            android:textColor="@android:color/black"
+            android:backgroundTint="@color/carrot_orange" />
 
     </LinearLayout>
-</FrameLayout>
+
+    <TextView
+        android:id="@+id/helloUserText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="8dp"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        android:textColor="@android:color/black"
+        android:text="Hello " />
+
+    <TextView
+        android:id="@+id/recipeIntroText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="4dp"
+        android:textSize="25sp"
+        android:textStyle="bold"
+        android:textColor="@android:color/black"
+        android:text="Your Recipes ->" />
+
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/list"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:background="@color/cream_background"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
+</LinearLayout>

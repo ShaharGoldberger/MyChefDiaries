@@ -1,8 +1,6 @@
-package com.example.mychefdiaries.Model;
+package com.example.mychefdiaries.Acitivites;
 
 import androidx.activity.EdgeToEdge;
-import androidx.activity.result.ActivityResultCallback;
-import androidx.activity.result.ActivityResultLauncher;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
@@ -11,26 +9,17 @@ import androidx.core.view.WindowInsetsCompat;
 
 import android.app.AlertDialog;
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.example.mychefdiaries.CreateProfileActivity;
 import com.example.mychefdiaries.R;
-import com.firebase.ui.auth.AuthUI;
-import com.firebase.ui.auth.FirebaseAuthUIActivityResultContract;
-import com.firebase.ui.auth.IdpResponse;
-import com.firebase.ui.auth.data.model.FirebaseAuthUIAuthenticationResult;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import java.util.Arrays;
-import java.util.List;
 
 public class LogInActivity extends AppCompatActivity {
 
@@ -41,6 +30,7 @@ public class LogInActivity extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
+        //FirebaseAuth.getInstance().signOut();
         setContentView(R.layout.login_layout); // setContentView(R.layout.login); sets the UI layout for the activity from a layout resource file named login.xml.
         // This block of code sets an OnApplyWindowInsetsListener on the view with ID main. It adjusts the padding of the view to account for system bars like the status and navigation bars, ensuring the content doesn't overlap with them.
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
@@ -49,8 +39,7 @@ public class LogInActivity extends AppCompatActivity {
             return insets;
         });
 
-        emailET = findViewById(R.id.email);
-        passwordET = findViewById(R.id.password);
+        findViews();
         mAuth = FirebaseAuth.getInstance(); // Initializes the mAuth variable with an instance of FirebaseAuth, allowing you to use Firebase for authentication in this activity.
 
         //get the user
@@ -60,7 +49,7 @@ public class LogInActivity extends AppCompatActivity {
             onUserLoggedIn();
         }
 
-        Button signInBT = findViewById(R.id.sign_in);
+        Button signInBT= findViewById(R.id.sign_in);
         signInBT.setOnClickListener(v -> signIn());
 
         TextView signUpTV = findViewById(R.id.sign_up);
@@ -109,6 +98,12 @@ public class LogInActivity extends AppCompatActivity {
         startActivity(intent);
         finish();
     }
+
+    private void findViews() {
+        emailET = findViewById(R.id.email);
+        passwordET = findViewById(R.id.password);
+    }
+
 
 
 
