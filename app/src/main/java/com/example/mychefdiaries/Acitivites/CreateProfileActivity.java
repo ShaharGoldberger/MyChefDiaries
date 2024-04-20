@@ -18,6 +18,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.example.mychefdiaries.Utilities.CameraHelper;
 import com.example.mychefdiaries.Utilities.DataBaseManager;
 import com.example.mychefdiaries.Model.User;
 import com.example.mychefdiaries.R;
@@ -44,31 +45,11 @@ public class CreateProfileActivity extends AppCompatActivity {
     private ImageView cameraIV;
     private ImageView galleryIV;
     private Button createBT;
+    private ActivityResultLauncher<Intent> cameraLauncher;
+    private ActivityResultLauncher<Intent> galleryLauncher;
 
 
-    private ActivityResultLauncher<Intent> cameraLauncher = registerForActivityResult(
-            new ActivityResultContracts.StartActivityForResult(), result ->{
-                if (result.getResultCode() == Activity.RESULT_OK) {
-                    imageBitmap = (Bitmap) result.getData().getExtras().get("data");
-                    profileImage.setImageBitmap(imageBitmap);
-                }
 
-    });
-
-    private ActivityResultLauncher<Intent> galleryLauncher = registerForActivityResult(
-            new ActivityResultContracts.StartActivityForResult(), result ->{
-                if (result.getResultCode() == Activity.RESULT_OK) {
-                    Uri uri = result.getData().getData();
-                    try {
-                        imageBitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), uri);
-
-                    } catch (IOException e) {
-                        throw new RuntimeException(e);
-                    }
-                    profileImage.setImageBitmap(imageBitmap);
-                }
-
-            });
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -80,17 +61,24 @@ public class CreateProfileActivity extends AppCompatActivity {
 
         findViews();
 
+        cameraLauncher = CameraHelper.setupCameraLauncher(this, bitmap -> {
+            profileImage.setImageBitmap(bitmap);
+        });
+        galleryLauncher = CameraHelper.setupGalleryLauncher(this, bitmap -> {
+            profileImage.setImageBitmap(bitmap);
+        });
+
         cameraIV.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                openCamera();
+                CameraHelper.openCamera(cameraLauncher);
             }
         });
 
         galleryIV.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                openGallery();
+                CameraHelper.openGallery(galleryLauncher);
             }
         });
 
@@ -168,7 +156,7 @@ public class CreateProfileActivity extends AppCompatActivity {
                     });
                 }
             });
-         } else {
+        } else {
             saveUserToFireStore(uid,null);
         }
     }
@@ -191,15 +179,4 @@ public class CreateProfileActivity extends AppCompatActivity {
         });
     }
 
-    private void openGallery() {
-        Intent intent = new Intent();
-        intent.setType("image/*");
-        intent.setAction(Intent.ACTION_GET_CONTENT);
-        galleryLauncher.launch(intent);
-    }
-
-    private void openCamera() {
-        Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-        cameraLauncher.launch(intent);
-    }
 }
