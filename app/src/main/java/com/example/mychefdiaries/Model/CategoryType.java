@@ -6,6 +6,6 @@ public enum  CategoryType {
     FISH,
     VEGAN,
     DESSERTS,
-    COKTAILES;
+    COCKTAILS;
 
 }

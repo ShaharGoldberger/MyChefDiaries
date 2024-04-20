@@ -189,7 +189,7 @@ public class CreateRecipeActivity extends AppCompatActivity {
         newRecipe.setId(id);
         newRecipe.setTitle(recipeName.getText().toString());
         newRecipe.setIngredients(ingredients.getText().toString());
-        newRecipe.setText(instructions.getText().toString()); // Correct method for instructions
+        newRecipe.setDescription(instructions.getText().toString()); // Correct method for instructions
         newRecipe.setImage(recipeImageUrl); // Here you should set the image URL of the recipe, not the user's image URL
         newRecipe.setMinutes(duration.getText().toString());
         newRecipe.setCategory(selectedCategory.toString().toUpperCase());

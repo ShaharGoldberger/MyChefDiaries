@@ -12,6 +12,7 @@ public class Recipe implements Serializable {
 
     public String id;
     private String name;
+    private String description;
     private String ingredients;
     private String image;
     private String createdUserId;
@@ -24,6 +25,14 @@ public class Recipe implements Serializable {
     public boolean isFavorite() {
         isfavorite = favoritedBy.containsKey(FirebaseAuth.getInstance().getUid());
         return isfavorite;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public void setFavorite(boolean favorite) {
@@ -84,18 +93,18 @@ public class Recipe implements Serializable {
         return image;
     }
 
-    public String getText() {
-        return ingredients;
-    }
+//    public String getText() {
+//        return ingredients;
+//    }
 
 
     public void setTitle(String title) {
         this.name = title;
     }
 
-    public void setText(String text) {
-        this.ingredients = text;
-    }
+//    public void setText(String text) {
+//        this.ingredients = text;
+//    }
 
     public void setImage(String image) {
         this.image = image;

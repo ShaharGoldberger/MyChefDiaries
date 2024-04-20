@@ -63,9 +63,9 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.RecipeView
         final Recipe recipe = recipesArray.get(position);
 
         //sending recipe's information to the holder, so it will appear in the single row view
-        holder.recipeName.setText(recipesArray.get(position).getName());
-        holder.recipeDescription.setText(recipesArray.get(position).getText());
-        holder.categoryTV.setText(recipesArray.get(position).getCategory());
+        holder.recipeName.setText("Racipe Name: " + recipesArray.get(position).getName());
+        holder.recipeDescription.setText("Description: " + recipesArray.get(position).getDescription());
+        holder.categoryTV.setText("Category: " + recipesArray.get(position).getCategory());
         Glide.with(holder.itemView)
                 .load(recipesArray.get(position).getImage())
                 .placeholder(R.drawable.icon)
@@ -101,7 +101,7 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.RecipeView
                     //Sending recipe's information the the RecipeView activity to show the recipe's details (using intent)
                     Intent intent = new Intent(v.getContext(), RecipeViewActivity.class);
                     intent.putExtra("nameKey", recipesArray.get(getAdapterPosition()).getName());
-                    intent.putExtra("descriptionKey", recipesArray.get(getAdapterPosition()).getText());
+                    intent.putExtra("descriptionKey", recipesArray.get(getAdapterPosition()).getDescription());
                     intent.putExtra("duration", recipesArray.get(getAdapterPosition()).getMinutes());
                     intent.putExtra("categoryKey", recipesArray.get(getAdapterPosition()).getCategory());
 
